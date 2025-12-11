@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/Favicon.png" type="image/x-icon" />
+    <title>עמותת אור - על מוניר עמאר</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-container">
+        <a href="/index-he.html" class="logo">
+          <img src="assets/Logo-1.png" alt="לוגו עמותת אור" />
+        </a>
+
+        <button
+          class="mobile-menu-toggle"
+          aria-label="פתח תפריט"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index-he.html" class="nav-link">בית</a></li>
+            <li><a href="about-he.html" class="nav-link">על העמותה</a></li>
+            <li>
+              <a href="monir-he.html" class="nav-link">סיפור חייו של מוניר </a>
+            </li>
+            <li><a href="events-he.html" class="nav-link">אירועים</a></li>
+          </ul>
+
+          <div class="mobile-nav-actions">
+            <a href="#" class="btn btn-pill btn-contact">צור קשר</a>
+            <button class="lang-switch" aria-label="החלף שפה">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a href="#" class="btn btn-pill btn-contact">צור קשר</a>
+          <button class="lang-switch" aria-label="החלף שפה">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-globe"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="section monir-hero" aria-labelledby="monir-title">
+        <div class="container">
+          <div class="monir-hero-split">
+            <div class="monir-hero-content">
+              <span class="eyebrow">על מוניר עמאר ז״ל</span>
+              <h1 id="monir-title">סיפור חייו של תת אלוף מוניר עמאר ז״ל</h1>
+              <p class="hero-intro">
+                תת-אלוף מוניר עמאר ז"ל היה מפקד נערץ, איש משפחה למופת ודמות מופת
+                בחברה הישראלית. לאורך שירותו הצבאי המפואר ובחייו האזרחיים, פעל
+                ללא לאות לקירוב לבבות, לחינוך למצויינות ולחיזוק הקשר בין העדה
+                הדרוזית למדינת ישראל. מורשתו ממשיכה להאיר את דרכנו.
+              </p>
+            </div>
+            <div class="monir-hero-video">
+              <div class="video-container">
+                <!-- Video Placeholder -->
+                <div class="video-wrapper">
+                  <video
+                    controls
+                    class="video-element"
+                    poster="assets/monir-video-poster.jpg"
+                  >
+                    <source src="./assets/moner english.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p class="video-caption">
+                  סרטון תיעודי קצר על חייו ופועלו של מוניר עמאר ז״ל
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline Section -->
+      <section
+        class="section timeline-section"
+        aria-labelledby="timeline-title"
+      >
+        <div class="container">
+          <div class="section-header text-center mb-5">
+            <h2 id="timeline-title">ציר הזמן, תחנות בחייו של מוניר</h2>
+            <p class="section-intro">מסע חיים של מנהיגות, נתינה ואהבת הארץ</p>
+          </div>
+
+          <div class="timeline-carousel">
+            <button
+              class="timeline-arrow timeline-prev"
+              aria-label="האירוע הקודם"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <div
+              class="timeline-viewport"
+              role="group"
+              aria-roledescription="carousel"
+            >
+              <ul class="timeline-track">
+                <!-- Slide 1 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">1968 – שנות הילדות</span>
+                    <h3>ילדות ונעורים בג'וליס</h3>
+                    <p>
+                      תא״ל מוניר סברי עמאר ז״ל נולד וגדל בכפר ג'וליס, בלב משפחה
+                      חמה ואוהבת, שחינכה אותו מגיל צעיר לערכים של כבוד, נתינה
+                      ואהבת האדם. כבר בילדותו בלט באופיו האחראי, בשאיפותיו
+                      הגבוהות ובכושר המנהיגות הטבעי שאפיין אותו לאורך כל חייו.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/8.png"
+                        />
+                        <img
+                          src="assets/lifespan-1.avif"
+                          alt="מוניר עמאר בילדותו"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 2 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">קצת על אביו של מוניר</span>
+                    <h3>סברי אחמד עמאר ז"ל</h3>
+                    <p>
+                      אבא שלו, סברי אחמד עמאר ז"ל היה מבין הראשונים שהתגייסו
+                      לצבא ההגנה לישראל עוד ב- 1948 והיוווה חלק משמעותי מכריתת
+                      הברית בין הדרוזים למדינת ישראל. ואף היה חלק מהקמת גדוד חרב
+                      שלאחר מכן מוניר פיקד עליו.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/2.png"
+                        />
+                        <img
+                          src="assets/lifespan-2.avif"
+                          alt='סברי אחמד עמאר ז"ל'
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 3 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">מהב״ס לצבא- 1986</span>
+                    <h3>תחילת דרכו הצבאית</h3>
+                    <p>
+                      מוניר סיים את לימודיו בתיכון האחווה ירכא בשנת 1986 ובגיל
+                      18 התגייס לצה״ל לגדוד 299 (חרב), שם החל את דרכו הצבאית
+                      עטורת ההישגים. לאחר קורס מ״כים וקורס קציני חי״ר, שב לגדוד
+                      ומילא שורה של תפקידים מבצעיים בגדוד ובחטיבה מרחבית 406.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/6.png"
+                        />
+                        <img
+                          src="assets/lifespan-3.avif"
+                          alt="מוניר עמאר בתפקיד פיקודי"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 4 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year"> </span>
+                    <h3>מבין תפקידיו הרבים</h3>
+                    <p>
+                      מפקד מחלקה בגדוד ובחטמ״ר, קמב״צ ומפקד פלוגה בחטמ״ר. בנוסף
+                      מילא תפקיד מפקד פלוגה בגדוד 299 (חרב) וחזר לחטיבה המרחבית
+                      406 לתפקיד של קצין הגמ״ר, לאחר תקופה עבר לתפקיד קצין אג״מ
+                      החטמ״ר. בתקופה הזאת נחתם הסכם השלום עם הממלכה הירדנית
+                      והוטלה עליו משימת סימון הגבול בין שתי המדינות
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/7.png"
+                        />
+                        <img
+                          src="assets/lifespan-4.avif"
+                          alt="מוניר עמאר כראש המנהל האזרחי"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 5 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year"> האינתיפאדה השנייה</span>
+                    <h3>אקדאמיה וצבא</h3>
+                    <p>
+                      חזר למלא תפקיד סמג״ד בגדוד 299 (חרב), עם סיום תפקידו בגדוד
+                      יצא ללימודי תואר ראשון, בלימודי ארץ ישראל באוניברסיטת
+                      חיפה. בסיום הלימודים עבר לשרת בחטמ״ר שומרון בתפקיד קצין
+                      אג״מ חטיבה ולאחר מכן בתפקיד סמח״ט, בתקופה הנ״ל פרצה
+                      האינתיפאדה השנייה ומתוקף תפקידו כקצין אג״מ וסמח״ט נאלץ
+                      לטפל באופן שוטף באירועים בגזרתו ואף נעדר לתקופה ארוכה של
+                      חודשיים מהבית. ​​עם סיום תפקידיו בחטמ״ר שומרון, חזר למלא
+                      תפקיד של מג״ד גדוד 299 (חרב) בשנת 2004, אשר בתקופה הזאת
+                      הכין את הגדוד למלחמה הבאה, מאחר והייתה לו ראיה ארוכת טווח
+                      וצפה שתפרוץ מלחמה, מה שהתבטא במקצועיות וגבורת לוחמי הגדוד
+                      במלחמת לבנון השנייה.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/1.png"
+                        />
+                        <img
+                          src="assets/lifespan-5.jpeg"
+                          alt="פעילות הנצחה לזכר מוניר"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 6 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">מלחמת לבנון השנייה </span>
+                    <h3>קור רוח</h3>
+                    <p>
+                      בסיום תפקיד המג״ד עבר למלא תפקיד של קצין אג״מ אוגדה 91.
+                      בתחילת התפקיד פרצה מלחמת לבנון השנייה, כאשר בתקופה הקשה
+                      הזאת תפקד באופן יוצא מן הכלל והפגין קור רוח בכל שלבי
+                      המלחמה, דבר אשר ציינו מפקדיו ומפקד האוגדה דאז תא״ל גל
+                      הירש. לאחר מכן, יצא ללימודי תואר שני במדעי המדינה
+                      באוניברסיטת חיפה, ובסיום הלימודים עבר לשרת כקמב״צ פיקוד
+                      צפון
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/2.png"
+                        />
+                        <img
+                          src="assets/lifespan-6.avif"
+                          alt="פעילות הנצחה לזכר מוניר"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 7 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">
+                      יום ״הנכסה״ ומלחמת ששת הימים
+                    </span>
+                    <h3>הזדמנויות אסטרטגיות</h3>
+                    <p>
+                      בעת סיום התפקיד הועלה לדרגת אל״מ ועבר לתפקיד מח״ט חרמון,
+                      כאשר תחת פיקודו הפכה להיות חטיבה מרחבית. הוא פיקד על
+                      החטיבה במשך שלוש שנים, בין האירועים הבולטים בתקופה זו היה
+                      כאשר הסורים ניסו לפרוץ את הגבול הבינלאומי לציון יום
+                      ״הנכסה״ ומלחמת ששת הימים, בו הוצב מוניר כמפקד האירוע
+                      במג'דל שמס. במסגרת תפקידו זה, כתב מאמר על סוריה -
+                      הזדמנויות אסטרטגיות בעת התהוות אזורי ספר - סוריה כמקרה
+                      מבחן.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/3.png"
+                        />
+                        <img
+                          src="assets/lifespan-7.avif"
+                          alt="פעילות הנצחה לזכר מוניר"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 8 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year">
+                      לימודים במכללה לביטחון לאומי
+                    </span>
+                    <h3>המערכה על העורף</h3>
+                    <p>
+                      לאחר סיום תפקידו כמח״ט יצא ללימודים במכללה לביטחון לאומי
+                      לתקופה של שנה ובסיום הלימודים חזר לשמש בתפקיד מפקד פיקוד
+                      העורף, מחוז חיפה והצפון. במסגרת תפקיד זה כתב את המאמר-
+                      המערכה על העורף
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/4.png"
+                        />
+                        <img
+                          src="assets/lifespan-8.avif"
+                          alt="פעילות הנצחה לזכר מוניר"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- Slide 9 -->
+                <li class="timeline-slide">
+                  <div class="timeline-content">
+                    <span class="timeline-year"> 2015-2016 </span>
+                    <h3>מנהיגות, משפחה והנצחה</h3>
+                    <p>
+                      בסוף שנת 2015 הועלה לדרגת תא״ל ומונה לתפקיד ראש המנהל
+                      האזרחי איו״ש, עד נפילתו ביום 25/03/2016. מעבר להישגים
+                      המקצועיים והמרשימים שלו, מוניר בנה משפחה אוהבת וחמה עם
+                      אשתו נבאל, וגידלו את שלושת ילדיהם – מוראד, מירה וסברי.
+                      היום ארבעתם ממשיכים להנציח את זכרו ולהמשיך בדרכו ומורשתו
+                      דרך ניהול עמותת אור.
+                    </p>
+                    <div class="timeline-image">
+                      <picture>
+                        <source
+                          media="(max-width: 700px, max-height: 700px)"
+                          srcset="assets/5.png"
+                        />
+                        <img
+                          src="assets/lifespan-9.avif"
+                          alt="פעילות הנצחה לזכר מוניר"
+                        />
+                      </picture>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <button
+              class="timeline-arrow timeline-next"
+              aria-label="האירוע הבא"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Memorial Banner -->
+      <section class="memorial-banner" dir="rtl">
+        <div class="memorial-overlay"></div>
+        <div class="memorial-content">
+          <h2 class="memorial-text">יהי זכרו ברוך.</h2>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" dir="rtl">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Column 1: About -->
+          <div class="footer-column">
+            <a href="#" class="footer-logo">
+              <img src="assets/Logo-1.png" alt="לוגו עמותת אור" />
+            </a>
+            <p class="footer-text">
+              עמותת אור פועלת להנצחת זכרו של תת אלוף מוניר עמאר ז״ל ולקידום
+              צעירים וצעירות מהחברה הדרוזית באמצעות חינוך, מנהיגות וקהילה.
+            </p>
+          </div>
+
+          <!-- Column 2: Links -->
+          <div class="footer-column">
+            <h4 class="footer-title">קישורים שימושיים</h4>
+            <ul class="footer-links">
+              <li><a href="index-he.html">דף הבית</a></li>
+              <li><a href="about-he.html">אודות העמותה</a></li>
+              <li><a href="monir-he.html">סיפורו של מוניר</a></li>
+              <li><a href="events-he.html">אירועים</a></li>
+              <li><a href="contact-he.html">צרו קשר</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact -->
+          <div class="footer-column">
+            <h4 class="footer-title">צור קשר</h4>
+            <ul class="footer-links contact-details">
+              <li>
+                <a href="mailto:ohr.foundation.aca@gmail.com
+
+">
+                  <span class="icon">✉️</span> ohr.foundation.aca@gmail.com
+
+
+                </a>
+              </li>
+              <li>
+                <a href="tel:04-9562576">
+                  <span class="icon">📞</span> 04-9562576
+                </a>
+              </li>
+              <li><span class="icon">📍</span> ג׳וליס, ישראל</li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Social -->
+          <div class="footer-column">
+            <h4 class="footer-title">עקבו אחרינו</h4>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/profile.php?id=100066227692160" aria-label="Facebook" class="social-link">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-facebook"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+                 <path
+                    d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                  ></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ohr-%D7%A2%D7%9E%D7%95%D7%AA%D7%AA-%D7%90%D7%95%D7%A8-400661329/"
+                aria-label="LinkedIn"
+                class="social-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-linkedin"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <a href="#">מדיניות פרטיות</a> | <a href="#">תנאי שימוש</a>
+          </div>
+          <div class="footer-copyright">
+            © 2024 עמותת אור, כל הזכויות שמורות.
+          </div>
+          <div class="footer-credit">
+            עיצוב ופיתוח:
+            <a
+              href="https://flammin.studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="credit-link"
+              >Flammin<span class="credit-dot">.</span>Studio</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
