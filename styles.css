@@ -251,8 +251,8 @@ body {
   /* Background Image Refactor */
   background: linear-gradient(
       135deg,
-      rgba(31, 51, 40, 0.9),
-      rgba(31, 51, 40, 0.6)
+      rgba(15, 19, 17, 0.9),
+      rgba(19, 27, 22, 0.6)
     ),
     url("assets/Hero-bg-3.jpeg");
   background-size: cover;
@@ -2030,5 +2030,158 @@ body {
 @media (max-width: 600px) {
   .cta-title {
     font-size: 1.8rem;
+  }
+}
+
+/* Contact Page Styles */
+.page-contact .item-hero {
+  padding: 80px 0 60px;
+  background-color: var(--color-bg);
+  /* text-align: center; Removed for split layout */
+}
+
+/* 
+.contact-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+} 
+Removed as using hero-internal-grid now 
+*/
+
+.contact-section {
+  padding: 0 0 40px; /* Reduced bottom padding to decrease gap to map */
+}
+
+.map-section {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+.map-section iframe {
+  display: block;
+  border: 8px solid white !important; /* Force border */
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Info on right, Form on left */
+  gap: 60px;
+}
+
+/* Contact Details (Right Column) */
+.contact-info {
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  height: fit-content;
+}
+
+.contact-info h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  margin-bottom: 24px;
+}
+
+.contact-list-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.contact-list-details li {
+  margin-bottom: 16px;
+}
+
+.contact-link-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.contact-link-item:hover {
+  color: var(--color-accent);
+}
+
+.contact-link-item .icon-wrapper {
+  font-size: 1.4rem;
+}
+
+.direct-contact-text {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Contact Form (Left Column) */
+.contact-form-wrapper {
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s;
+  background-color: #f9f9f9;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(199, 168, 109, 0.2);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-info,
+  .contact-form-wrapper {
+    padding: 24px;
+  }
+
+  .item-hero {
+    padding: 60px 0 40px;
   }
 }
