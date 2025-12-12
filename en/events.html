@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohr Foundation - Events and Activities</title>
+    <meta
+      name="description"
+      content="Discover the events and community activities of the Ohr Foundation."
+    />
+    <link rel="canonical" href="https://YOURDOMAIN/en/events.html" />
+    <link
+      rel="alternate"
+      hreflang="he"
+      href="https://YOURDOMAIN/events-he.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://YOURDOMAIN/en/events.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://YOURDOMAIN/events-he.html"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="../assets/Favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles-en.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img src="../assets/Logo-1.png" alt="Ohr Foundation Logo" />
+        </a>
+
+        <button
+          class="mobile-menu-toggle"
+          aria-label="Open Menu"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li>
+              <a href="monir.html" class="nav-link">Munir</a>
+            </li>
+            <li><a href="events.html" class="nav-link">Events</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <div class="mobile-nav-actions">
+            <a href="contact.html" class="btn btn-pill btn-contact"
+              >Contact Us</a
+            >
+            <button
+              class="lang-switch"
+              aria-label="Switch Language"
+              data-lang="he"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a href="contact.html" class="btn btn-pill btn-contact">Contact Us</a>
+          <div class="lang-wrapper">
+            <button class="lang-switch" aria-label="Switch Language">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </button>
+            <div class="lang-dropdown">
+              <button class="lang-option" data-lang="he">עברית</button>
+              <button class="lang-option" data-lang="en">English</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="events-page">
+      <!-- 1. Hero Section -->
+      <section class="section events-hero" aria-labelledby="events-title">
+        <div class="container">
+          <span class="eyebrow">Events at Ohr Foundation</span>
+          <h1 id="events-title">
+            Events, Ceremonies, and Community Activities
+          </h1>
+          <p
+            class="hero-description"
+            style="max-width: 800px; margin: 0 0 30px"
+          >
+            Throughout the year, the Foundation holds a wide variety of
+            educational events, community meetings, and official ceremonies,
+            with aim of strengthening the bond between young Druze and Israeli
+            society as a whole, and cultivating a future generation of
+            leadership and at the monument of the late Colonel Munir Amar.
+          </p>
+          <div class="hero-tagline">Upcoming and Recent Events</div>
+        </div>
+      </section>
+
+      <!-- 2. Filters -->
+      <section class="events-filters-section">
+        <div class="container">
+          <div class="events-filters" role="tablist">
+            <button
+              class="filter-btn"
+              role="tab"
+              aria-selected="false"
+              aria-controls="upcoming-events"
+              id="tab-upcoming"
+            >
+              Upcoming Events
+            </button>
+            <button
+              class="filter-btn active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="past-events"
+              id="tab-past"
+            >
+              Past Events
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Events Lists -->
+      <div class="events-lists-container">
+        <!-- Upcoming Events -->
+        <section
+          id="upcoming-events"
+          class="section events-section events-upcoming"
+          role="tabpanel"
+          aria-labelledby="tab-upcoming"
+          hidden
+        >
+          <div class="container">
+            <div class="empty-state text-center">
+              <p>No upcoming events at the moment. Please stay tuned.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Past Events -->
+        <section
+          id="past-events"
+          class="section events-section events-past is-active"
+          role="tabpanel"
+          aria-labelledby="tab-past"
+        >
+          <div class="container">
+            <div class="events-grid">
+              <!-- Card 1 -->
+              <article class="event-card">
+                <div class="event-image">
+                  <img
+                    src="../assets/Scholarship.avif"
+                    alt="Annual Scholarship Ceremony"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="event-badge">Official Ceremony</span>
+                </div>
+                <div class="event-content">
+                  <span class="event-date"> 2024</span>
+                  <h3>Annual Scholarship Ceremony</h3>
+                  <p>Distribution ceremony of the "Ohr" Scholarship for 2024</p>
+                  <button
+                    class="btn-text event-trigger"
+                    data-title="Annual Scholarship Ceremony"
+                    data-date="2024"
+                    data-description="The Ohr scholarship is one of the organization's most significant projects. For us, it is a great privilege to support Druze students who will have the future to influence and advance Druze society.
+
+It is very important to note that this project and much of our activity as an association would not have been possible without the support and contributions of our partners – the Schoenfeld family and the international B’nai B’rith organization. In addition to many other partners and donors from Israel and around the world. To whom we express our gratitude.
+
+Together with our fellows, this year we are going to take the association's activities to a much larger scale, especially in the areas of culture, art and the environment.
+
+In order to spread light throughout society."
+                    data-images='["../assets/scholarship.avif", "../assets/events/1.jpg", "../assets/events/2.jpg", "../assets/events/3.jpg", "../assets/events/4.jpg", "../assets/events/5.jpg", "../assets/events/6.jpg", "../assets/events/7.jpg", "../assets/events/8.jpg", "../assets/events/9.jpg", "../assets/events/10.jpg", "../assets/events/11.jpg", "../assets/events/12.jpg", "../assets/events/13.jpg", "../assets/events/14.jpg", "../assets/events/15.jpg"]'
+                  >
+                    Read More &rightarrow;
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 2 -->
+              <article class="event-card">
+                <div class="event-image">
+                  <img
+                    src="../assets/events/29.jpg"
+                    alt="Commemoration Conference 2021"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="event-badge">Commemoration</span>
+                </div>
+                <div class="event-content">
+                  <span class="event-date"> 2021</span>
+                  <h3>Commemoration Conference</h3>
+                  <p>
+                    Meeting marking five years since the fall of Brig. Gen.
+                    Munir Amar
+                  </p>
+                  <button
+                    class="btn-text event-trigger"
+                    data-title="Commemoration Conference 2021"
+                    data-date="March 2021"
+                    data-description="Meeting marking five years since the fall of Brig. Gen. Munir Amar at Beit Abba Hushi Haifa, with the participation of comrades in arms and opinion leaders in Israeli society."
+                    data-images='["../assets/events/29.jpg", "../assets/events/16.jpg", "../assets/events/17.jpg", "../assets/events/18.jpg", "../assets/events/19.jpg", "../assets/events/20.jpg", "../assets/events/21.jpg", "../assets/events/22.jpg", "../assets/events/23.jpg", "../assets/events/24.jpg", "../assets/events/25.jpg", "../assets/events/26.jpg", "../assets/events/27.jpg", "../assets/events/28.jpg", "../assets/events/29.jpg", "../assets/events/30.jpg", "../assets/events/31.jpg", "../assets/events/32.jpg", "../assets/events/33.jpg", "../assets/events/34.jpg", "../assets/events/35.jpg", "../assets/events/36.jpg", "../assets/events/37.jpg", "../assets/events/38.jpg", "../assets/events/39.jpg", "../assets/events/40.jpg", "../assets/events/41.jpg"]'
+                  >
+                    Read More &rightarrow;
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 3 -->
+              <article class="event-card">
+                <div class="event-image">
+                  <img
+                    src="../assets/events/50.jpg"
+                    alt="Field activity with 'Aharai' group"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="event-badge">Youth Activity</span>
+                </div>
+                <div class="event-content">
+                  <span class="event-date"> 2021</span>
+                  <h3>Field activity with "Aharai" group</h3>
+                  <p>
+                    Bonding and IDF preparation day for youth, including a
+                    stretcher march, battle legacy, and talks on command and
+                    leadership.
+                  </p>
+                  <button
+                    class="btn-text event-trigger"
+                    data-title="Field activity with 'Aharai' group"
+                    data-date="July 2021"
+                    data-description="Bonding and IDF preparation day for youth, including a foot march to the memorial lookout named after Brig. Gen. Munir Amar (z'l). During the day, participants experienced challenging physical training, learned about the battle legacy and Munir's unique contribution to the Druze community and the State of Israel, and spoke with instructors and officers about command, leadership, responsibility, and the meaning of military service. The activity strengthened the personal and group resilience of the youth and gave them practical tools and confidence ahead of their upcoming enlistment."
+                    data-images='["../assets/events/50.jpg", "../assets/events/42.jpg", "../assets/events/43.jpg", "../assets/events/44.jpg", "../assets/events/45.jpg", "../assets/events/46.jpg", "../assets/events/47.jpg", "../assets/events/48.jpg", "../assets/events/49.jpg", "../assets/events/51.jpg"]'
+                  >
+                    Read More &rightarrow;
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 4 -->
+              <article class="event-card">
+                <div class="event-image">
+                  <img
+                    src="../assets/events/55.jpg"
+                    alt="Race in memory of Brig. Gen. Munir Amar"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="event-badge">Community Limit</span>
+                </div>
+                <div class="event-content">
+                  <span class="event-date"> 2016</span>
+                  <h3>Annual Race in Memory of Brig. Gen. Munir Amar</h3>
+                  <p>
+                    Annual community race in memory of Brig. Gen. Munir Amar ,
+                    held in the village of Julis
+                  </p>
+                  <button
+                    class="btn-text event-trigger"
+                    data-title="Annual Community Race in Memory of Brig. Gen. Munir Amar (z'l)"
+                    data-date=" 2016"
+                    data-description="Annual community race in memory of Brig. Gen. Munir Amar (z'l), held in the village of Julis and was the first community event of the Ohr Foundation. The race attracted youth, families, and residents from all over the region, and combined sporting activity with values of memory, unity, and intergenerational connection. The event marked the beginning of broad community action, aimed at strengthening the sense of belonging, encouraging a healthy lifestyle, and commemorating the legacy and moral path of Munir Amar (z'l)."
+                    data-images='["../assets/events/55.jpg", "../assets/events/52.jpg", "../assets/events/53.jpg", "../assets/events/54.jpg", "../assets/events/56.jpg", "../assets/events/57.jpg", "../assets/events/58.jpg", "../assets/events/59.jpg", "../assets/events/60.jpg", "../assets/events/61.jpg", "../assets/events/62.jpg" ]'
+                  >
+                    Read More &rightarrow;
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. CTA Section -->
+      <section class="section section-cta" id="events-cta">
+        <canvas id="cta-canvas"></canvas>
+        <div class="cta-overlay"></div>
+        <div class="container relative z-10 text-center">
+          <span class="eyebrow-accent mb-4 block">Join Us</span>
+          <h2 class="cta-title">Want to take part in our events?</h2>
+          <p class="cta-description">
+            We would love to see you at one of the Foundation's next events, and
+            get to know you personally. Join the circle of action and influence.
+          </p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="btn btn-primary btn-pill"
+              >Contact Us</a
+            >
+            <a href="contact.html" class="btn btn-outline-light btn-pill"
+              >Donate to Activity</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" dir="ltr">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Column 1: About -->
+          <div class="footer-column">
+            <a href="index.html" class="footer-logo">
+              <img src="../assets/Logo-1.png" alt="Ohr Foundation Logo" />
+            </a>
+            <p class="footer-text">
+              The Ohr Foundation works to commemorate the memory of Brigadier
+              General Munir Amar and to advance young men and women from Druze
+              society through education, leadership, and community.
+            </p>
+          </div>
+
+          <!-- Column 2: Links -->
+          <div class="footer-column">
+            <h4 class="footer-title">Useful Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="monir.html">Munir's Story</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact -->
+          <div class="footer-column">
+            <h4 class="footer-title">Contact</h4>
+            <ul class="footer-links contact-details">
+              <li>
+                <a href="mailto:ohr.foundation.aca@gmail.com">
+                  <span class="icon">✉️</span> ohr.foundation.aca@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:04-9562576">
+                  <span class="icon">📞</span> 04-9562576
+                </a>
+              </li>
+              <li><span class="icon">📍</span> Julis, Israel</li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Social -->
+          <div class="footer-column">
+            <h4 class="footer-title">Follow Us</h4>
+            <div class="social-icons">
+              <a
+                href="https://www.facebook.com/profile.php?id=100066227692160"
+                aria-label="Facebook"
+                class="social-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-facebook"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ohr-%D7%A2%D7%9E%D7%95%D7%AA%D7%AA-%D7%90%D7%95%D7%A8-400661329/"
+                aria-label="LinkedIn"
+                class="social-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-linkedin"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+          </div>
+          <div class="footer-copyright">
+            © 2024 Ohr Foundation. All rights reserved.
+          </div>
+          <div class="footer-credit">
+            Design & Development:
+            <a
+              href="https://flammin.studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="credit-link"
+              >Flammin<span class="credit-dot">.</span>Studio</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../main.js"></script>
+    <!-- Event Modal -->
+    <div id="event-modal" class="modal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-container">
+        <button class="modal-close" data-close aria-label="Close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        <div class="modal-body">
+          <!-- Carousel -->
+          <div class="modal-gallery">
+            <div class="modal-gallery-viewport">
+              <div class="modal-gallery-track">
+                <!-- JS injects images here -->
+              </div>
+            </div>
+            <button class="modal-nav prev" aria-label="Previous">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="modal-nav next" aria-label="Next">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Content -->
+          <div class="modal-text">
+            <span class="modal-date-tag"></span>
+            <h2 class="modal-title"></h2>
+            <div class="modal-desc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

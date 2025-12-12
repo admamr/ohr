@@ -163,6 +163,65 @@ body {
   background-color: rgba(31, 51, 40, 0.1);
 }
 
+.lang-wrapper {
+  position: relative;
+  display: flex; /* Changed from inline-block to flex for better vertical alignment */
+  align-items: center;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0; /* Align right for RTL default */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 120px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+/* LTR Override for dropdown position */
+html[dir="ltr"] .lang-dropdown {
+  right: auto;
+  left: 0;
+}
+
+.lang-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: block;
+  width: 100%;
+  text-align: left; /* Default alignment */
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+/* Align text based on direction if needed, but names are usually self-aligned. 
+   Let's keep text-align start */
+html[dir="rtl"] .lang-option {
+  text-align: right;
+}
+
+.lang-option:hover {
+  background-color: rgba(31, 51, 40, 0.05);
+  color: var(--color-accent);
+}
+
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -2085,6 +2144,23 @@ Removed as using hero-internal-grid now
   font-size: 0.95rem;
   color: #666;
   line-height: 1.6;
+}
+
+/* Contact Social Icons */
+.contact-info .social-icons {
+  margin-top: 24px;
+}
+
+.contact-info .social-link {
+  background-color: #f0f0f0; /* Light gray for visibility on white */
+  color: var(--color-primary);
+  width: 44px;
+  height: 44px;
+}
+
+.contact-info .social-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* Contact Form (Left Column) */

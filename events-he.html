@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/Favicon.png" type="image/x-icon" />
     <title>עמותת אור - אירועים ופעילות</title>
+    <meta name="description" content="גלו את האירועים והפעילות הקהילתית של עמותת אור." />
+    <link rel="canonical" href="https://YOURDOMAIN/events-he.html" />
+    <link rel="alternate" hreflang="he" href="https://YOURDOMAIN/events-he.html" />
+    <link rel="alternate" hreflang="en" href="https://YOURDOMAIN/en/events.html" />
+    <link rel="alternate" hreflang="x-default" href="https://YOURDOMAIN/events-he.html" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -39,7 +44,7 @@
             <a href="contact-he.html" class="btn btn-pill btn-contact"
               >צור קשר</a
             >
-            <button class="lang-switch" aria-label="החלף שפה">
+            <button class="lang-switch" aria-label="החלף שפה" data-lang="en">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -64,26 +69,32 @@
 
         <div class="header-actions">
           <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
-          <button class="lang-switch" aria-label="החלף שפה">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-globe"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path>
-            </svg>
-          </button>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
         </div>
       </div>
     </header>
@@ -170,6 +181,8 @@
                   <img
                     src="assets/Scholarship.avif"
                     alt="טקס הענקת מלגות שנתי"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span class="event-badge">טקס רשמי</span>
                 </div>
@@ -200,7 +213,7 @@
               <!-- Card 2 -->
               <article class="event-card">
                 <div class="event-image">
-                  <img src="assets/events/29.jpg" alt="כנס הנצחה 2021" />
+                  <img src="assets/events/29.jpg" alt="כנס הנצחה 2021" loading="lazy" decoding="async" />
                   <span class="event-badge">הנצחה</span>
                 </div>
                 <div class="event-content">
@@ -225,6 +238,8 @@
                   <img
                     src="assets/events/50.jpg"
                     alt="פעילות שטח עם קבוצת אחרי"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span class="event-badge">פעילות נוער</span>
                 </div>
@@ -253,6 +268,8 @@
                   <img
                     src="assets/events/55.jpg"
                     alt="  מירוץ לזכרו של תא״ל מוניר עמאר"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <span class="event-badge">אירוע קהילתי</span>
                 </div>

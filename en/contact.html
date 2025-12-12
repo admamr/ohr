@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohr Foundation - Contact Us</title>
+    <meta
+      name="description"
+      content="Contact the Ohr Foundation. We're here for any question or request."
+    />
+    <link rel="canonical" href="https://YOURDOMAIN/en/contact.html" />
+    <link
+      rel="alternate"
+      hreflang="he"
+      href="https://YOURDOMAIN/contact-he.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://YOURDOMAIN/en/contact.html"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://YOURDOMAIN/contact-he.html"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="../assets/Favicon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles-en.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">
+          <img src="../assets/Logo-1.png" alt="Ohr Foundation Logo" />
+        </a>
+
+        <button
+          class="mobile-menu-toggle"
+          aria-label="Open Menu"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li>
+              <a href="monir.html" class="nav-link">Munir</a>
+            </li>
+            <li><a href="events.html" class="nav-link">Events</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <div class="mobile-nav-actions">
+            <a href="contact.html" class="btn btn-pill btn-contact"
+              >Contact Us</a
+            >
+            <button
+              class="lang-switch"
+              aria-label="Switch Language"
+              data-lang="he"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a href="contact.html" class="btn btn-pill btn-contact">Contact Us</a>
+          <div class="lang-wrapper">
+            <button class="lang-switch" aria-label="Switch Language">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-globe"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </button>
+            <div class="lang-dropdown">
+              <button class="lang-option" data-lang="he">עברית</button>
+              <button class="lang-option" data-lang="en">English</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-contact">
+      <section class="item-hero" aria-labelledby="contact-heading">
+        <div class="container hero-internal-grid">
+          <!-- Swap order for LTR: Content Left, Image Right? 
+                Hebrew: Image (Right), Content (Left).
+                LTR: Content (Left), Image (Right).
+                So Content should be first child. -->
+          <div class="hero-internal-content">
+            <span class="eyebrow">Contact Us</span>
+            <h1 id="contact-heading">We'd Love to Hear From You</h1>
+            <p class="hero-intro">
+              Have a question or an idea for collaboration? We are here for you.
+              Contact us regarding volunteering, donations, or any other
+              information.
+            </p>
+          </div>
+          <div class="hero-internal-image">
+            <img
+              src="../assets/Munir_Amar.jpg"
+              alt="Contact Ohr Foundation"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Information + Form Section -->
+      <section class="section contact-section">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Right Column in Hebrew (Side), Left Column in LTR? 
+                 If we want Side Info (Smaller) and Main Form (Larger).
+                 Hebrew: Info (1st child, 1fr), Form (2nd child, 1.5fr).
+                 LTR: Info (1st child, 1fr), Form (2nd child, 1.5fr).
+                 So Info will be Left, Form will be Right. 
+                 This is good mirroring. -->
+
+            <div class="contact-info">
+              <h2>Contact Details</h2>
+              <ul class="contact-list-details">
+                <li>
+                  <a
+                    href="mailto:ohr.foundation.aca@gmail.com"
+                    class="contact-link-item"
+                  >
+                    <span class="icon-wrapper">✉️</span>
+                    <span class="text">ohr.foundation.aca@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:04-9562576" class="contact-link-item">
+                    <span class="icon-wrapper">📞</span>
+                    <span class="text">04-9562576</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="contact-link-item">
+                    <span class="text">Julis, Israel</span>
+                  </div>
+                </li>
+              </ul>
+              <p class="direct-contact-text">
+                You can also contact us via social media or leave your details
+                in the form.
+              </p>
+              <div class="social-icons">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100066227692160"
+                  aria-label="Facebook"
+                  class="social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-facebook"
+                  >
+                    <path
+                      d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                    ></path>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ohr-%D7%A2%D7%9E%D7%95%D7%AA%D7%AA-%D7%90%D7%95%D7%A8-400661329/"
+                  aria-label="LinkedIn"
+                  class="social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-linkedin"
+                  >
+                    <path
+                      d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                    ></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Left Column in Hebrew (Main), Right Column in LTR -->
+            <div class="contact-form-wrapper">
+              <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                  <label for="full-name">Full Name *</label>
+                  <input
+                    type="text"
+                    id="full-name"
+                    name="full-name"
+                    required
+                    class="form-input"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="form-input"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    required
+                    class="form-input"
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-pill">
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Map Section -->
+      <section class="section map-section">
+        <div class="container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13416.711833182888!2d35.1583!3d32.9463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151e7d0f0c056d6f%3A0x6a1f0a5a0f0f0f0f!2sJulis!5e0!3m2!1sen!2sil!4v1612345678901!5m2!1sen!2sil"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            title="Google Map showing Julis location"
+          >
+          </iframe>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="site-footer" dir="ltr">
+      <div class="container">
+        <div class="footer-top">
+          <!-- Column 1: About -->
+          <div class="footer-column">
+            <a href="index.html" class="footer-logo">
+              <img src="../assets/Logo-1.png" alt="Ohr Foundation Logo" />
+            </a>
+            <p class="footer-text">
+              The Ohr Foundation works to commemorate the memory of Brigadier
+              General Munir Amar and to advance young men and women from Druze
+              society through education, leadership, and community.
+            </p>
+          </div>
+
+          <!-- Column 2: Links -->
+          <div class="footer-column">
+            <h4 class="footer-title">Useful Links</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="monir.html">Munir's Story</a></li>
+              <li><a href="events.html">Events</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Contact -->
+          <div class="footer-column">
+            <h4 class="footer-title">Contact</h4>
+            <ul class="footer-links contact-details">
+              <li>
+                <a href="mailto:ohr.foundation.aca@gmail.com">
+                  <span class="icon">✉️</span> ohr.foundation.aca@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:04-9562576">
+                  <span class="icon">📞</span> 04-9562576
+                </a>
+              </li>
+              <li><span class="icon">📍</span> Julis, Israel</li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Social -->
+          <div class="footer-column">
+            <h4 class="footer-title">Follow Us</h4>
+            <div class="social-icons">
+              <a
+                href="https://www.facebook.com/profile.php?id=100066227692160"
+                aria-label="Facebook"
+                class="social-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-facebook"
+                >
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ohr-%D7%A2%D7%9E%D7%95%D7%AA%D7%AA-%D7%90%D7%95%D7%A8-400661329/"
+                aria-label="LinkedIn"
+                class="social-link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-linkedin"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  ></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+          </div>
+          <div class="footer-copyright">
+            © 2024 Ohr Foundation. All rights reserved.
+          </div>
+          <div class="footer-credit">
+            Design & Development:
+            <a
+              href="https://flammin.studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="credit-link"
+              >Flammin<span class="credit-dot">.</span>Studio</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../main.js"></script>
+  </body>
+</html>

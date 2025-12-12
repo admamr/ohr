@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="assets/Favicon.png" type="image/x-icon" />
     <title>עמותת אור - אודות העמותה</title>
+    <meta name="description" content="הכירו את עמותת אור, החזון, המשימה והפעילות שלנו לזכרו של תת-אלוף מוניר עמאר ז״ל." />
+    <link rel="canonical" href="https://YOURDOMAIN/about-he.html" />
+    <link rel="alternate" hreflang="he" href="https://YOURDOMAIN/about-he.html" />
+    <link rel="alternate" hreflang="en" href="https://YOURDOMAIN/en/about.html" />
+    <link rel="alternate" hreflang="x-default" href="https://YOURDOMAIN/about-he.html" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -37,7 +42,7 @@
 
           <div class="mobile-nav-actions">
             <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
-            <button class="lang-switch" aria-label="החלף שפה">
+            <button class="lang-switch" aria-label="החלף שפה" data-lang="en">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -62,26 +67,32 @@
 
         <div class="header-actions">
           <a href="#" class="btn btn-pill btn-contact">צור קשר</a>
-          <button class="lang-switch" aria-label="החלף שפה">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-globe"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path>
-            </svg>
-          </button>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
         </div>
       </div>
     </header>
@@ -129,6 +140,8 @@
                 src="assets/about-2.jpeg"
                 alt="סטודנטים בטקס קבלת מלגות"
                 class="split-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>עמותת אור - העצמת צעירים דרוזים</title>
-    <meta
-      name="description"
-      content="עמותת אור פועלת להעצמת צעירים דרוזים דרך חינוך, מלגות ומנהיגות. הצטרפו אלינו לבניית עתיד טוב יותר."
-    />
+    <title>עמותת אור - דף הבית</title>
+    <meta name="description" content="עמותת אור פועלת להעצמת צעירים וצעירות מהחברה הדרוזית באמצעות חינוך, מלגות ומנהיגות. הצטרפו אלינו ליצירת עתיד טוב יותר." />
+    <link rel="canonical" href="https://YOURDOMAIN/index.html" />
+    <link rel="alternate" hreflang="he" href="https://YOURDOMAIN/index.html" />
+    <link rel="alternate" hreflang="en" href="https://YOURDOMAIN/en/index.html" />
+    <link rel="alternate" hreflang="x-default" href="https://YOURDOMAIN/index.html" />
     <link rel="shortcut icon" href="assets/Favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
     <!-- Google Fonts -->
@@ -45,51 +46,63 @@
 
           <div class="mobile-nav-actions">
             <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
-            <button class="lang-switch" aria-label="החלף שפה">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-globe"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path
-                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                ></path>
-              </svg>
-            </button>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
           </div>
         </nav>
 
         <div class="header-actions">
           <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
-          <button class="lang-switch" aria-label="החלף שפה">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-globe"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path
-                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-              ></path>
-            </svg>
-          </button>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
         </div>
       </div>
     </header>
@@ -233,8 +246,10 @@
             <div class="munir-image-wrapper">
               <img
                 src="assets/Munir-2.jpg"
-                alt="צילום של תת אלוף מוניר עמאר ז״ל"
+                alt="תמונה של תת אלוף מוניר עמאר ז״ל"
                 class="munir-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -265,6 +280,8 @@
                   src="assets/Scholarship.avif"
                   alt="טקס הענקת מלגות"
                   class="event-image"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="event-content">
@@ -285,6 +302,8 @@
                   src="assets/2022.JPG"
                   alt="סדנת מנהיגות צעירה"
                   class="event-image"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="event-content">
@@ -304,6 +323,8 @@
                   src="assets/2021.jpg"
                   alt="מפגש קהילה ודו קיום"
                   class="event-image"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="event-content">

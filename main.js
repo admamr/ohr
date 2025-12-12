@@ -185,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function initTimelineCarousel() {
     const track = document.querySelector(".timeline-track");
     const viewport = document.querySelector(".timeline-viewport");
+
+    // Only proceed if elements exist
     if (!track || !viewport) return;
 
     const slides = Array.from(track.children);
@@ -193,12 +195,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
 
     function updateCarousel() {
-      // In RTL Flexbox: Item 0 is Rightmost. Item 1 is Left of 0.
-      // To see Item 1 (Move view Left), we actually need to move Track Right.
-      // transform: translateX(100%) moves element Right.
-      // So Index * 100% works.
+      const isRTL =
+        document.dir === "rtl" ||
+        document.documentElement.dir === "rtl" ||
+        getComputedStyle(document.body).direction === "rtl";
+      const dirMultiplier = isRTL ? 1 : -1;
+
       const slideWidth = 100;
-      track.style.transform = `translateX(${currentIndex * slideWidth}%)`;
+      track.style.transform = `translateX(${
+        currentIndex * slideWidth * dirMultiplier
+      }%)`;
 
       // Adaptive Height
       const activeSlide = slides[currentIndex];
@@ -397,8 +403,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateModalCarousel() {
-      // For RTL, positive translateX moves right, revealing items on the left side (stack 1, 2, 3 R->L)
-      track.style.transform = `translateX(${currentSlide * 100}%)`;
+      const isRTL =
+        document.dir === "rtl" || document.documentElement.dir === "rtl";
+      const dirMultiplier = isRTL ? 1 : -1;
+      track.style.transform = `translateX(${
+        currentSlide * 100 * dirMultiplier
+      }%)`;
     }
 
     // Triggers
@@ -520,4 +530,92 @@ document.addEventListener("DOMContentLoaded", () => {
     resize(); // Init
     animate();
   })();
+  /* Language Switcher Logic */
+  function initLanguageSwitcher() {
+    // Handle Dropdown Toggles and Closes
+    document.addEventListener("click", (e) => {
+      const isDropdownButton = e.target.closest(".lang-switch");
+      const isDropdownMenu = e.target.closest(".lang-dropdown");
+
+      // Close all open dropdowns first if click is outside
+      if (!isDropdownButton && !isDropdownMenu) {
+        document.querySelectorAll(".lang-dropdown.show").forEach((menu) => {
+          menu.classList.remove("show");
+        });
+      }
+
+      // If clicked button, toggle its sibling menu
+      if (isDropdownButton) {
+        const wrapper = isDropdownButton.closest(".lang-wrapper");
+        const menu = wrapper.querySelector(".lang-dropdown");
+        if (menu) {
+          // Close others
+          document.querySelectorAll(".lang-dropdown.show").forEach((m) => {
+            if (m !== menu) m.classList.remove("show");
+          });
+          menu.classList.toggle("show");
+        }
+      }
+    });
+
+    // Handle Option Clicks
+    const langOptions = document.querySelectorAll(".lang-option");
+
+    // Define mapping between English and Hebrew filenames
+    const fileMap = {
+      "index.html": "index.html",
+      "about.html": "about-he.html",
+      "monir.html": "monir-he.html",
+      "events.html": "events-he.html",
+      "contact.html": "contact-he.html",
+    };
+
+    // Create reverse map for Hebrew -> English lookup
+    const reverseMap = {};
+    Object.entries(fileMap).forEach(([en, he]) => {
+      reverseMap[he] = en;
+    });
+
+    langOptions.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetLang = btn.getAttribute("data-lang");
+        const path = window.location.pathname;
+        const filename = path.split("/").pop() || "index.html";
+
+        // Determine current lang based on URL or HTML attribute if needed,
+        // but simple logic is: we are on a page, we want targetLang version.
+
+        // Detect current language context
+        const isEnglishPath = path.includes("/en/");
+
+        // Strict check: We are in English mode if path has /en/
+        // We are in Hebrew mode if path does NOT have /en/
+
+        let targetUrl = "";
+
+        if (targetLang === "en") {
+          if (isEnglishPath) return; // Already on English
+
+          // Switch He -> En
+          // normalize filename
+          const currentFile = filename === "" ? "index.html" : filename;
+          const enFile = reverseMap[currentFile] || "index.html";
+          targetUrl = `en/${enFile}`;
+        } else if (targetLang === "he") {
+          if (!isEnglishPath) return; // Already on Hebrew
+
+          // Switch En -> He
+          const currentFile = filename === "" ? "index.html" : filename;
+          const heFile = fileMap[currentFile] || "index.html";
+          targetUrl = `../${heFile}`;
+        }
+
+        if (targetUrl) {
+          window.location.href = targetUrl;
+        }
+      });
+    });
+  }
+
+  initLanguageSwitcher();
 });

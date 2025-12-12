@@ -1,0 +1,151 @@
+/* LTR Overrides for English Pages */
+/* This stylesheet is loaded after styles.css on pages with dir="ltr" */
+
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Header */
+html[dir="ltr"] .submenu {
+  left: 0;
+  right: auto;
+}
+
+/* Hero */
+html[dir="ltr"] .hero {
+  text-align: left;
+}
+
+html[dir="ltr"] .hero-content {
+  margin-left: 0;
+  margin-right: auto;
+  padding-left: 60px;
+  padding-right: 0;
+}
+
+@media (max-width: 768px) {
+  html[dir="ltr"] .hero-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
+}
+
+/* Monir / About Section - Visual Flips */
+html[dir="ltr"] .hero-internal-content,
+html[dir="ltr"] .munir-content {
+  text-align: left;
+}
+
+html[dir="ltr"] .munir-link::after {
+  content: "→"; /* Right arrow */
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+html[dir="ltr"] .munir-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* Event Cards */
+html[dir="ltr"] .event-badge {
+  left: 12px;
+  right: auto;
+}
+
+/* Footer Alignment */
+/* In RTL: Footer Credit (Left/End), Footer Legal (Right/Start) */
+/* In LTR: Footer Credit (Right/End), Footer Legal (Left/Start) */
+/* Existing CSS: Credit text-align: left (visual end in RTL, visual start in LTR) -> We want End (Right) */
+/* Existing CSS: Legal text-align: right (visual start in RTL, visual end in LTR) -> We want Start (Left) */
+
+html[dir="ltr"] .footer-credit {
+  text-align: right;
+}
+
+html[dir="ltr"] .footer-legal {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  html[dir="ltr"] .footer-credit,
+  html[dir="ltr"] .footer-legal {
+    text-align: center;
+  }
+}
+
+/* Footer Social Icons - Gap is fine, flex direction flips automatically */
+/* Footer Top Grid - Flips automatically */
+
+/* Monir Hero (Internal Page) */
+html[dir="ltr"] .monir-hero-split {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Modal */
+html[dir="ltr"] .modal-close {
+  right: 15px;
+  left: auto;
+}
+
+html[dir="ltr"] .modal-nav.prev {
+  left: 15px;
+  right: auto;
+  transform: translateY(-50%) rotate(180deg); /* Flip chevron if it's directional */
+}
+
+/* Note: The SVG for prev is <polyline points="15 18 9 12 15 6"> (Left pointing < ) */
+/* In LTR, Prev usually points Left (<). So NO rotation needed if icon is <. */
+/* But wait, in RTL context, "Prev" (go to newer/right) might have used > or <? */
+/* CSS Viewer says: prev is points="15 18 9 12 15 6" which is Left Arrow (<) */
+/* next is points="9 18 15 12 9 6" which is Right Arrow (>) */
+/* In LTR Gallery: Prev (Go Left/Back) should be <. Next (Go Right/Forward) should be >. */
+/* So icons are correct for LTR physically. */
+/* Positioning needs swap. */
+
+html[dir="ltr"] .modal-nav.next {
+  right: 15px;
+  left: auto;
+  /* Next icon is >. Correct for LTR. */
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  html[dir="ltr"] .main-nav {
+    left: -100%;
+    right: auto;
+  }
+
+  html[dir="ltr"] .main-nav.active {
+    left: 0;
+    right: auto;
+  }
+
+  html[dir="ltr"] .submenu {
+    padding-left: 20px;
+    padding-right: 0;
+  }
+}
+
+/* Contact Page */
+/* Icons in contact links need spacing check? */
+html[dir="ltr"] .contact-details .icon {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+html[dir="ltr"] .contact-link-item {
+  flex-direction: row; /* Ensure row */
+}
+
+/* Form inputs alignment */
+html[dir="ltr"] .form-input {
+  text-align: left;
+}
+
+html[dir="ltr"] .contact-info,
+html[dir="ltr"] .contact-form-wrapper {
+  text-align: left;
+}
