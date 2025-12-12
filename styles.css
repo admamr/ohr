@@ -1120,8 +1120,16 @@ body {
 
 /* Monir Teaser */
 .monir-teaser-section {
-  background-color: transparent; /* Keeping light/transparent as per user preference (or fallback) */
-  color: var(--color-primary); /* Dark text for contrast */
+  height: 500px;
+  background-color: var(--color-primary);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("assets/mm.jpg");
+  background-size: cover;
+  background-position: right;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   text-align: center;
   padding: 100px 0;
 }
@@ -1132,32 +1140,17 @@ body {
 }
 
 .teaser-content h2 {
+  font-size: 2.3rem;
   color: var(--color-accent);
   margin-bottom: 24px;
 }
 
 .teaser-content p {
-  font-size: 1.25rem;
-  opacity: 1; /* Removed opacity 0.9 for better contrast */
+  font-size: 1.5rem;
+  color: var(--color-white);
+  opacity: 1;
   margin-bottom: 32px;
   line-height: 1.6;
-}
-
-.btn-outline-light {
-  display: inline-block;
-  padding: 12px 32px;
-  border: 2px solid var(--color-primary); /* Dark border */
-  border-radius: 50px;
-  color: var(--color-primary); /* Dark text */
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn-outline-light:hover {
-  background-color: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
 }
 
 /* Responsive About */
@@ -1221,8 +1214,6 @@ body {
   max-width: 800px;
   margin: 0;
   margin-left: auto;
-  margin: 0;
-  margin-left: auto; /* Occupy left space */
 }
 
 .monir-hero-content {
