@@ -1567,11 +1567,14 @@ body {
 
 /* Events List */
 .events-section {
-  display: none;
   padding: 40px 0 80px;
 }
 
-.events-section.is-active {
+.events-section[role="tabpanel"] {
+  display: none;
+}
+
+.events-section[role="tabpanel"].is-active {
   display: block;
   animation: fadeUp 0.6s ease-out;
 }
