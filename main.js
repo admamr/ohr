@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileToggle.setAttribute("aria-expanded", !isExpanded);
       mainNav.classList.toggle("active");
 
-      // Optional: Prevent scrolling when menu is open
+      // Prevent scrolling when menu is open
       if (!isExpanded) {
         body.style.overflow = "hidden";
       } else {
@@ -57,7 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardIndex === 2) el.classList.add("delay-200");
     }
 
-    // ... existing code ...
+    // Special animation for Munir's image (if needed different class)
+    if (el.classList.contains("munir-image-wrapper")) {
+      // Logic handled via CSS class addition
+    }
+
     observer.observe(el);
   });
 
@@ -102,18 +106,40 @@ document.addEventListener("DOMContentLoaded", () => {
           this.vx = (Math.random() - 0.5) * 0.5;
           this.vy = (Math.random() - 0.5) * 0.5;
           this.size = Math.random() * 2 + 1;
-          this.color = "rgba(199, 168, 109, "; // Gold base
         }
+
         update() {
           this.x += this.vx;
           this.y += this.vy;
+
+          // Bounce off edges
           if (this.x < 0 || this.x > width) this.vx *= -1;
           if (this.y < 0 || this.y > height) this.vy *= -1;
+
+          // Mouse interaction (repel)
+          if (mouse.x != null) {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouseDistance) {
+              const forceDirectionX = dx / distance;
+              const forceDirectionY = dy / distance;
+              const maxDistance = mouseDistance;
+              const force = (maxDistance - distance) / maxDistance;
+              const directionX = forceDirectionX * force * 1; // Strength
+              const directionY = forceDirectionY * force * 1;
+
+              this.vx -= directionX;
+              this.vy -= directionY;
+            }
+          }
         }
+
         draw() {
           ctx.beginPath();
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.color + "0.5)";
+          ctx.fillStyle = "rgba(199, 168, 109, 0.4)"; // Gold color
           ctx.fill();
         }
       }
@@ -127,58 +153,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function animate() {
         ctx.clearRect(0, 0, width, height);
-        particles.forEach((p, index) => {
-          p.update();
-          p.draw();
-          // Connect
-          for (let j = index; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < connectionDistance) {
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          for (let j = i; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectionDistance) {
               ctx.beginPath();
               ctx.strokeStyle = `rgba(199, 168, 109, ${
-                0.2 * (1 - dist / connectionDistance)
+                1 - distance / connectionDistance
               })`;
               ctx.lineWidth = 1;
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
               ctx.stroke();
             }
           }
-          // Mouse
-          if (mouse.x != null) {
-            const dist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-            if (dist < mouseDistance) {
-              ctx.beginPath();
-              ctx.strokeStyle = `rgba(31, 51, 40, ${
-                0.4 * (1 - dist / mouseDistance)
-              })`;
-              ctx.lineWidth = 1;
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.stroke();
-            }
-          }
-        });
+        }
         animationFrameId = requestAnimationFrame(animate);
       }
 
-      window.addEventListener("resize", resize);
+      // Mouse Listeners
       section.addEventListener("mousemove", (e) => {
-        const rect = section.getBoundingClientRect();
+        const rect = canvas.getBoundingClientRect();
         mouse.x = e.clientX - rect.left;
         mouse.y = e.clientY - rect.top;
       });
+
       section.addEventListener("mouseleave", () => {
         mouse.x = null;
         mouse.y = null;
       });
 
+      window.addEventListener("resize", resize);
       resize();
       animate();
     });
   }
 
+  // Initialize Particles if on relevant pages
   initInteractiveBackgrounds();
 
   /* Timeline Carousel */
@@ -344,278 +361,509 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initEventFilters();
 
-  /* Event Modal Logic */
+  /* Modal Logic for Events Page */
   function initEventModal() {
     const modal = document.getElementById("event-modal");
     if (!modal) return;
 
-    const triggers = document.querySelectorAll(".event-trigger");
-    const closeButtons = document.querySelectorAll("[data-close]");
-
-    // Elements to fill
     const modalTitle = modal.querySelector(".modal-title");
-    const modalDate = modal.querySelector(".modal-date-tag");
-    const modalDesc = modal.querySelector(".modal-desc");
-    const track = modal.querySelector(".modal-gallery-track");
-    const btnPrev = modal.querySelector(".modal-nav.prev");
-    const btnNext = modal.querySelector(".modal-nav.next");
+    const modalDescription = modal.querySelector(".modal-description");
+    const modalImage = modal.querySelector(".carousel-image");
+    const prevBtn = modal.querySelector(".modal-nav.prev");
+    const nextBtn = modal.querySelector(".modal-nav.next");
+    const closeModalBtn = modal.querySelector(".modal-close");
+    const readMoreButtons = document.querySelectorAll(".read-more");
 
-    let currentSlide = 0;
-    let totalSlides = 0;
+    let currentImages = [];
+    let currentImageIndex = 0;
 
-    function openModal(data) {
-      modalTitle.textContent = data.title;
-      modalDate.textContent = data.date;
-      modalDesc.textContent = data.description;
-
-      // Build Carousel Slides
-      track.innerHTML = "";
-      // Handle potential single quotes in JSON by trying to be safe or assuming valid JSON string
-      let images = [];
-      try {
-        images = JSON.parse(data.images || "[]");
-      } catch (e) {
-        console.error("Error parsing images", e);
-      }
-
-      totalSlides = images.length;
-      currentSlide = 0;
-
-      images.forEach((src) => {
-        const slide = document.createElement("div");
-        slide.className = "modal-slide";
-        const img = document.createElement("img");
-        img.src = src;
-        slide.appendChild(img);
-        track.appendChild(slide);
-      });
-
-      updateModalCarousel();
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden"; // Lock Body Scroll
-    }
-
-    function closeModal() {
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
-
-    function updateModalCarousel() {
-      const isRTL =
-        document.dir === "rtl" || document.documentElement.dir === "rtl";
-      const dirMultiplier = isRTL ? 1 : -1;
-      track.style.transform = `translateX(${
-        currentSlide * 100 * dirMultiplier
-      }%)`;
-    }
-
-    // Triggers
-    triggers.forEach((btn) => {
+    // Open Modal
+    readMoreButtons.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        const data = {
-          title: btn.getAttribute("data-title"),
-          date: btn.getAttribute("data-date"),
-          description: btn.getAttribute("data-description"),
-          images: btn.getAttribute("data-images"),
-        };
-        openModal(data);
+        e.preventDefault(); // If it's an anchor
+        const eventCard = btn.closest(".event-card");
+
+        // Get Data
+        const title = eventCard.querySelector(".card-title").textContent;
+        // In a real scenario, full description might be stored in a data attribute
+        const description = eventCard.getAttribute("data-description") || "";
+        const images = JSON.parse(
+          eventCard.getAttribute("data-images") || "[]"
+        );
+
+        // Populate Modal
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+        currentImages = images;
+        currentImageIndex = 0;
+        updateCarouselImage();
+
+        modal.classList.add("active");
+        body.style.overflow = "hidden";
       });
     });
 
-    // Close
-    closeButtons.forEach((btn) => btn.addEventListener("click", closeModal));
+    // Close Modal
+    const closeModal = () => {
+      modal.classList.remove("active");
+      body.style.overflow = "";
+    };
+
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      // Close if clicked outside the content (backdrop)
+      if (e.target === modal) closeModal();
+    });
+
+    // Carousel Navigation
+    const updateCarouselImage = () => {
+      if (currentImages.length > 0) {
+        modalImage.src = currentImages[currentImageIndex];
+        modalImage.alt = `Event Image ${currentImageIndex + 1}`;
+      } else {
+        // Fallback or placeholder if no images
+        modalImage.src = "";
+        modalImage.alt = "No Image Available";
+      }
+    };
+
+    prevBtn.addEventListener("click", () => {
+      if (currentImages.length > 0) {
+        currentImageIndex =
+          (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        updateCarouselImage();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentImages.length > 0) {
+        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        updateCarouselImage();
+      }
+    });
+
+    // Keyboard navigation for modal
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open"))
-        closeModal();
+      if (!modal.classList.contains("active")) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevBtn.click();
+      if (e.key === "ArrowRight") nextBtn.click();
     });
-
-    // Carousel Nav
-    if (btnPrev && btnNext) {
-      btnPrev.addEventListener("click", () => {
-        // Prev in RTL (Right Arrow visually, logic depends if we are at 0)
-        // If we are at 0, moving "Prev" (Nav Right) goes to -1?
-        // Wait, "Prev" button icon is Right Arrow?
-        // In my HTML: prev is <polyline points="15 18 9 12 15 6"></polyline> (Left pointing chevron)
-        // next is <polyline points="9 18 15 12 9 6"></polyline> (Right pointing chevron)
-        // In RTL: Prev should go to "Newer/Right" item? Or "Previous index"?
-        // Usually Next -> Index + 1. Prev -> Index - 1.
-
-        if (currentSlide > 0) {
-          currentSlide--;
-          updateModalCarousel();
-        } else {
-          currentSlide = totalSlides - 1;
-          updateModalCarousel();
-        }
-      });
-
-      btnNext.addEventListener("click", () => {
-        if (currentSlide < totalSlides - 1) {
-          currentSlide++;
-          updateModalCarousel();
-        } else {
-          currentSlide = 0;
-          updateModalCarousel();
-        }
-      });
-    }
   }
 
   initEventModal();
 
-  /* CTA Interactive Background */
-  (function initCTACanvas() {
-    const canvas = document.getElementById("cta-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-
-    let width, height;
-    let particles = [];
-
-    function resize() {
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
-      createParticles();
-    }
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2 + 1;
-        this.alpha = Math.random() * 0.3 + 0.1;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0) this.x = width;
-        else if (this.x > width) this.x = 0;
-
-        if (this.y < 0) this.y = height;
-        else if (this.y > height) this.y = 0;
-      }
-
-      draw() {
-        ctx.fillStyle = `rgba(199, 168, 109, ${this.alpha})`; // Accent color
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function createParticles() {
-      particles = [];
-      const count = Math.floor((width * height) / 10000); // Density based on area
-      for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener("resize", resize);
-    resize(); // Init
-    animate();
-  })();
-  /* Language Switcher Logic */
+  /* Language Switcher Logic (Revised) */
   function initLanguageSwitcher() {
-    // Handle Dropdown Toggles and Closes
-    document.addEventListener("click", (e) => {
-      const isDropdownButton = e.target.closest(".lang-switch");
-      const isDropdownMenu = e.target.closest(".lang-dropdown");
+    const wrappers = document.querySelectorAll(".lang-wrapper"); // Handle duplicates (mobile/desktop)
 
-      // Close all open dropdowns first if click is outside
-      if (!isDropdownButton && !isDropdownMenu) {
-        document.querySelectorAll(".lang-dropdown.show").forEach((menu) => {
-          menu.classList.remove("show");
+    if (!wrappers.length) return;
+
+    wrappers.forEach((wrapper) => {
+      const switchBtn = wrapper.querySelector(".lang-switch");
+      const dropdown = wrapper.querySelector(".lang-dropdown");
+      const options = wrapper.querySelectorAll(".lang-option");
+
+      // Guard, skip incomplete wrapper instances (common in mobile panel markup)
+      if (!switchBtn || !dropdown) return;
+
+      // Toggle Dropdown
+      switchBtn.addEventListener("click", (e) => {
+        e.preventDefault(); // important if .lang-switch is an <a>
+        e.stopPropagation();
+
+        wrappers.forEach((w) => {
+          if (w !== wrapper)
+            w.querySelector(".lang-dropdown")?.classList.remove("show");
         });
-      }
 
-      // If clicked button, toggle its sibling menu
-      if (isDropdownButton) {
-        const wrapper = isDropdownButton.closest(".lang-wrapper");
-        const menu = wrapper.querySelector(".lang-dropdown");
-        if (menu) {
-          // Close others
-          document.querySelectorAll(".lang-dropdown.show").forEach((m) => {
-            if (m !== menu) m.classList.remove("show");
-          });
-          menu.classList.toggle("show");
-        }
-      }
+        dropdown.classList.toggle("show");
+      });
+
+      // Prevent document click closer from immediately closing when tapping inside dropdown
+      dropdown.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+
+      // Handle Option Click
+      options.forEach((option) => {
+        option.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const lang = option.getAttribute("data-lang");
+          switchLanguage(lang);
+          dropdown.classList.remove("show");
+        });
+      });
     });
 
-    // Handle Option Clicks
-    const langOptions = document.querySelectorAll(".lang-option");
-
-    // Define mapping between English and Hebrew filenames
-    const fileMap = {
-      "index.html": "index.html",
-      "about.html": "about-he.html",
-      "monir.html": "monir-he.html",
-      "events.html": "events-he.html",
-      "contact.html": "contact-he.html",
-    };
-
-    // Create reverse map for Hebrew -> English lookup
-    const reverseMap = {};
-    Object.entries(fileMap).forEach(([en, he]) => {
-      reverseMap[he] = en;
-    });
-
-    langOptions.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const targetLang = btn.getAttribute("data-lang");
-        const path = window.location.pathname;
-        const filename = path.split("/").pop() || "index.html";
-
-        // Determine current lang based on URL or HTML attribute if needed,
-        // but simple logic is: we are on a page, we want targetLang version.
-
-        // Detect current language context
-        const isEnglishPath = path.includes("/en/");
-
-        // Strict check: We are in English mode if path has /en/
-        // We are in Hebrew mode if path does NOT have /en/
-
-        let targetUrl = "";
-
-        if (targetLang === "en") {
-          if (isEnglishPath) return; // Already on English
-
-          // Switch He -> En
-          // normalize filename
-          const currentFile = filename === "" ? "index.html" : filename;
-          const enFile = reverseMap[currentFile] || "index.html";
-          targetUrl = `en/${enFile}`;
-        } else if (targetLang === "he") {
-          if (!isEnglishPath) return; // Already on Hebrew
-
-          // Switch En -> He
-          const currentFile = filename === "" ? "index.html" : filename;
-          const heFile = fileMap[currentFile] || "index.html";
-          targetUrl = `../${heFile}`;
-        }
-
-        if (targetUrl) {
-          window.location.href = targetUrl;
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      wrappers.forEach((wrapper) => {
+        const dropdown = wrapper.querySelector(".lang-dropdown");
+        const switchBtn = wrapper.querySelector(".lang-switch");
+        if (
+          dropdown &&
+          dropdown.classList.contains("show") &&
+          !wrapper.contains(e.target)
+        ) {
+          dropdown.classList.remove("show");
         }
       });
     });
   }
 
+  function switchLanguage(targetLang) {
+    const currentPath = window.location.pathname;
+    const isEnglishPage = currentPath.includes("/en/");
+    const currentLang = isEnglishPage ? "en" : "he";
+
+    if (targetLang === currentLang) return; // Already on target language
+
+    const fileName = currentPath.split("/").pop() || "index.html"; // Default to index.html
+    let newUrl = "";
+
+    // Mapping for specific internal pages if names differ greatly
+    // Convention:
+    // Hebrew: index.html, about-he.html, monir-he.html, events-he.html, contact-he.html, privacy-he.html, terms-he.html
+    // English: en/index.html, en/about.html, en/monir.html, en/events.html, en/contact.html, en/privacy.html, en/terms.html
+
+    const pageMapping = {
+      // Hebrew to English Key map
+      "index.html": "index.html",
+      "about-he.html": "about.html",
+      "monir-he.html": "monir.html",
+      "events-he.html": "events.html",
+      "contact-he.html": "contact.html",
+      "privacy-he.html": "privacy.html",
+      "terms-he.html": "terms.html",
+
+      // English to Hebrew Key map (reverse lookup logic needed or explicit map)
+      "about.html": "about-he.html",
+      "monir.html": "monir-he.html",
+      "events.html": "events-he.html",
+      "contact.html": "contact-he.html",
+      "privacy.html": "privacy-he.html",
+      "terms.html": "terms-he.html",
+    };
+
+    if (targetLang === "en") {
+      // Switching to English
+      // If we are at root /, it's index.html
+      let key = fileName;
+      if (fileName === "") key = "index.html";
+
+      const targetFile = pageMapping[key] || "index.html"; // Default fallback
+
+      // Determine relative path based on current depth.
+      // If we are at root, go to en/
+      // If we are deeper, adjustments needed. Assuming flat structure at root.
+      // Since current is Hebrew (root), destination is en/
+      newUrl = "en/" + targetFile;
+
+      // Edge case: if already in a subdirectory (unlikely for current structure but good practice)
+      if (currentPath.includes("/")) {
+        // Absolute path construction is safer if hosting structure varies
+        // Using relative for now assuming strictly flat root vs /en/
+        // Ensure we don't double stack
+        const pathParts = currentPath.split("/");
+        // Remove filename
+        pathParts.pop();
+        // Logic: We are at root (Hebrew). We want ./en/targetFile
+        // Wait, if we are in local file system, relative paths are tricky.
+        // Assuming web server structure or consistent relative placement.
+        // index.html -> en/index.html
+        // about-he.html -> en/about.html
+
+        newUrl = `en/${targetFile}`;
+
+        // Special check for index: if we are at root named as folder (e.g. ohr/), fileName is empty
+        if (fileName === "" || fileName === "/") newUrl = "en/index.html";
+
+        // Correcting relative path issue if user is viewing specific file
+        // If opening file directly (file://...), relative path works from current dir.
+      }
+    } else {
+      // Switching to Hebrew
+      // We are in /en/ (e.g. /en/about.html)
+      // Destination is ../about-he.html
+
+      const targetFile = pageMapping[fileName] || "index.html";
+      newUrl = "../" + targetFile;
+    }
+
+    window.location.href = newUrl;
+  }
+
   initLanguageSwitcher();
+
+  /* Cookie Consent System */
+  class CookieConsent {
+    constructor() {
+      this.consentKey = "ohr_cookie_consent_v1";
+      this.isRTL = document.documentElement.dir === "rtl";
+      this.lang = document.documentElement.lang || (this.isRTL ? "he" : "en");
+
+      this.consent = this.getConsent() || {
+        essential: true,
+        analytics: false,
+        marketing: false,
+        timestamp: null,
+        version: 1,
+      };
+
+      this.text = {
+        he: {
+          bannerTitle: "אנו משתמשים בעוגיות",
+          bannerBody:
+            "אנו משתמשים בעוגיות חיוניות להפעלת האתר, ועוגיות אופציונליות לניתוח ושיווק. ניתן לבחור העדפות בכל עת.",
+          acceptAll: "קבל הכל",
+          reject: "דחה הכל",
+          manage: "הגדרות",
+          modalTitle: "העדפות עוגיות",
+          save: "שמור העדפות",
+          close: "סגור",
+          categories: {
+            essential: {
+              title: "עוגיות חיוניות",
+              desc: "נדרשות לתפקוד תקין של האתר. לא ניתן לבטל.",
+            },
+            analytics: {
+              title: "ניתוח וסטטיסטיקה",
+              desc: "עוזרות לנו לשפר את האתר על ידי איסוף נתונים אנונימיים.",
+            },
+            marketing: {
+              title: "שיווק",
+              desc: "משמשות למעקב אחר משתמשים לצורך הצגת תוכן רלוונטי.",
+            },
+          },
+        },
+        en: {
+          bannerTitle: "We use cookies",
+          bannerBody:
+            "We use essential cookies to run the site, and optional cookies for analytics and marketing. You can change your preferences at any time.",
+          acceptAll: "Accept All",
+          reject: "Reject All",
+          manage: "Preferences",
+          modalTitle: "Cookie Preferences",
+          save: "Save Preferences",
+          close: "Close",
+          categories: {
+            essential: {
+              title: "Essential Cookies",
+              desc: "Required for the site to function properly. Cannot be disabled.",
+            },
+            analytics: {
+              title: "Analytics",
+              desc: "Help us improve the site by collecting anonymous usage data.",
+            },
+            marketing: {
+              title: "Marketing",
+              desc: "Used to track visitors across websites to display relevant ads.",
+            },
+          },
+        },
+      };
+
+      this.init();
+    }
+
+    init() {
+      if (!this.hasConsent()) {
+        this.renderBanner();
+      } else {
+        this.applyConsent();
+      }
+      this.renderModal(); // Always render modal hidden for footer link access
+      this.attachGlobalListeners();
+    }
+
+    getConsent() {
+      try {
+        const stored = localStorage.getItem(this.consentKey);
+        return stored ? JSON.parse(stored) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    setConsent(c) {
+      this.consent = {
+        ...this.consent,
+        ...c,
+        timestamp: new Date().toISOString(),
+      };
+      localStorage.setItem(this.consentKey, JSON.stringify(this.consent));
+      this.applyConsent();
+    }
+
+    hasConsent() {
+      return !!this.getConsent();
+    }
+
+    applyConsent() {
+      // Logic to enable/disable scripts based on flags
+      if (this.consent.analytics) {
+        // e.g., loadGoogleAnalytics();
+        console.log("Analytics cookies enabled");
+      }
+      if (this.consent.marketing) {
+        // e.g., loadMarketingPixels();
+        console.log("Marketing cookies enabled");
+      }
+    }
+
+    renderBanner() {
+      if (document.getElementById("cookie-banner")) return;
+
+      const t = this.text[this.lang === "he" ? "he" : "en"];
+      const html = `
+        <div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cb-title">
+          <div class="cb-content">
+            <h3 id="cb-title">${t.bannerTitle}</h3>
+            <p>${t.bannerBody}</p>
+          </div>
+          <div class="cb-actions">
+            <button id="cb-accept" class="btn btn-sm btn-primary">${t.acceptAll}</button>
+            <button id="cb-reject" class="btn btn-sm btn-outline">${t.reject}</button>
+            <button id="cb-manage" class="btn btn-sm btn-link">${t.manage}</button>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML("beforeend", html);
+      document.body.classList.add("has-cookie-banner");
+
+      document.getElementById("cb-accept").addEventListener("click", () => {
+        this.setConsent({ analytics: true, marketing: true });
+        this.closeBanner();
+      });
+
+      document.getElementById("cb-reject").addEventListener("click", () => {
+        this.setConsent({ analytics: false, marketing: false });
+        this.closeBanner();
+      });
+
+      document.getElementById("cb-manage").addEventListener("click", () => {
+        this.openModal();
+      });
+    }
+
+    closeBanner() {
+      const banner = document.getElementById("cookie-banner");
+      if (banner) banner.remove();
+      document.body.classList.remove("has-cookie-banner");
+    }
+
+    renderModal() {
+      if (document.getElementById("cookie-modal")) return;
+
+      const t = this.text[this.lang === "he" ? "he" : "en"];
+      const html = `
+        <div id="cookie-modal" class="cookie-modal" aria-hidden="true">
+          <div class="cookie-modal-overlay" tabindex="-1"></div>
+          <div class="cookie-modal-content" role="dialog" aria-modal="true" aria-labelledby="cm-title">
+            <header class="cm-header">
+              <h3 id="cm-title">${t.modalTitle}</h3>
+              <button id="cm-close" aria-label="${t.close}">&times;</button>
+            </header>
+            <div class="cm-body">
+              <div class="cm-section">
+                <div class="cm-row">
+                  <div class="cm-info">
+                    <h4>${t.categories.essential.title}</h4>
+                    <p>${t.categories.essential.desc}</p>
+                  </div>
+                  <div class="cm-toggle">
+                    <input type="checkbox" checked disabled>
+                    <span class="slider"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="cm-section">
+                <div class="cm-row">
+                  <div class="cm-info">
+                    <h4>${t.categories.analytics.title}</h4>
+                    <p>${t.categories.analytics.desc}</p>
+                  </div>
+                  <div class="cm-toggle">
+                    <input type="checkbox" id="toggle-analytics" ${
+                      this.consent.analytics ? "checked" : ""
+                    }>
+                    <label for="toggle-analytics" class="slider"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="cm-section">
+                <div class="cm-row">
+                  <div class="cm-info">
+                    <h4>${t.categories.marketing.title}</h4>
+                    <p>${t.categories.marketing.desc}</p>
+                  </div>
+                  <div class="cm-toggle">
+                    <input type="checkbox" id="toggle-marketing" ${
+                      this.consent.marketing ? "checked" : ""
+                    }>
+                    <label for="toggle-marketing" class="slider"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer class="cm-footer">
+              <button id="cm-save" class="btn btn-primary">${t.save}</button>
+            </footer>
+          </div>
+        </div>
+      `;
+      document.body.insertAdjacentHTML("beforeend", html);
+
+      // Listeners
+      const modal = document.getElementById("cookie-modal");
+      const overlay = modal.querySelector(".cookie-modal-overlay");
+      const closeBtn = document.getElementById("cm-close");
+      const saveBtn = document.getElementById("cm-save");
+
+      const close = () => {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+      };
+
+      overlay.addEventListener("click", close);
+      closeBtn.addEventListener("click", close);
+
+      saveBtn.addEventListener("click", () => {
+        const analytics = document.getElementById("toggle-analytics").checked;
+        const marketing = document.getElementById("toggle-marketing").checked;
+        this.setConsent({ analytics, marketing });
+        close();
+        this.closeBanner();
+      });
+    }
+
+    openModal() {
+      const modal = document.getElementById("cookie-modal");
+      if (modal) {
+        // Sync state before opening
+        document.getElementById("toggle-analytics").checked =
+          this.consent.analytics;
+        document.getElementById("toggle-marketing").checked =
+          this.consent.marketing;
+
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+      }
+    }
+
+    attachGlobalListeners() {
+      document.addEventListener("click", (e) => {
+        if (e.target.matches("[data-cookie-open]")) {
+          e.preventDefault();
+          this.openModal();
+        }
+      });
+    }
+  }
+
+  // Initialize Cookie Consent
+  new CookieConsent();
 });

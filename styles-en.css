@@ -73,6 +73,10 @@ html[dir="ltr"] .footer-legal {
   html[dir="ltr"] .footer-legal {
     text-align: center;
   }
+
+  .footer-legal a {
+    font-size: 0.8rem;
+  }
 }
 
 /* Footer Social Icons - Gap is fine, flex direction flips automatically */
@@ -148,4 +152,36 @@ html[dir="ltr"] .form-input {
 html[dir="ltr"] .contact-info,
 html[dir="ltr"] .contact-form-wrapper {
   text-align: left;
+}
+
+/* Cookie Consent LTR Overrides */
+html[dir="ltr"] .cookie-banner {
+  /* Default positioning works for both LTR/RTL if right/left both set? 
+     Yes, but text requires LTR */
+  text-align: left;
+}
+
+html[dir="ltr"] .cb-content h3,
+html[dir="ltr"] .cb-content p {
+  text-align: left;
+}
+
+html[dir="ltr"] .cm-header,
+html[dir="ltr"] .cm-body,
+html[dir="ltr"] .cm-footer {
+  text-align: left;
+}
+
+/* LTR Toggle Logic Override */
+html[dir="ltr"] .slider:before {
+  left: 3px;
+  right: auto;
+}
+
+html[dir="ltr"] input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+html[dir="ltr"] .cm-footer {
+  text-align: right; /* Save button on the right for LTR */
 }
