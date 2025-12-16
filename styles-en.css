@@ -98,6 +98,12 @@ html[dir="ltr"] .footer-legal {
     text-align: center;
   }
 
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: start;
+  }
+
   .footer-legal {
     display: flex;
     flex-direction: row;
