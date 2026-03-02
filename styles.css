@@ -2518,7 +2518,7 @@ html[dir="rtl"] input:checked + .slider:before {
   position: relative;
   width: 90%;
   max-width: 500px;
-  animation: fadeIn 0.3s ease;
+  aspect-ratio: 4 / 5;
 }
 
 .popup-image {
