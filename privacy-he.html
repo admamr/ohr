@@ -576,5 +576,43 @@
         }
       }
     </style>
+    <button
+  id="accessibilityToggle"
+  class="accessibility-toggle"
+  aria-label="פתח תפריט נגישות"
+  aria-expanded="false"
+  aria-controls="accessibilityPanel"
+  type="button"
+>
+  ♿
+</button>
+
+<aside
+  id="accessibilityPanel"
+  class="accessibility-panel"
+  aria-hidden="true"
+>
+  <div class="accessibility-panel__header">
+    <h2>נגישות</h2>
+    <button
+      id="closeAccessibilityPanel"
+      class="accessibility-close"
+      aria-label="סגור תפריט נגישות"
+      type="button"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="accessibility-panel__buttons">
+    <button type="button" data-action="increase-text">הגדל טקסט</button>
+    <button type="button" data-action="decrease-text">הקטן טקסט</button>
+    <button type="button" data-action="toggle-contrast">ניגודיות גבוהה</button>
+    <button type="button" data-action="toggle-links">קו תחתון לקישורים</button>
+    <button type="button" data-action="toggle-animations">עצירת אנימציות</button>
+    <button type="button" data-action="toggle-readable-font">פונט קריא</button>
+    <button type="button" data-action="reset">איפוס</button>
+  </div>
+</aside>
   </body>
 </html>
