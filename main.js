@@ -832,3 +832,150 @@ const popup = document.getElementById("popupOverlay");
       popup.style.display = "none";
     }
   });
+
+// Accessibility-toggle
+
+const accessibilityToggle = document.getElementById("accessibilityToggle");
+const accessibilityPanel = document.getElementById("accessibilityPanel");
+const closeAccessibilityPanel = document.getElementById("closeAccessibilityPanel");
+
+const STORAGE_KEY = "ohrAccessibilitySettings";
+
+const defaultAccessibilitySettings = {
+  fontScale: 1,
+  highContrast: false,
+  underlineLinks: false,
+  disableAnimations: false,
+  readableFont: false,
+};
+
+function getAccessibilitySettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return { ...defaultAccessibilitySettings, ...saved };
+  } catch {
+    return { ...defaultAccessibilitySettings };
+  }
+}
+
+function saveAccessibilitySettings(settings) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+}
+
+function applyAccessibilitySettings(settings) {
+  document.documentElement.style.fontSize = `${settings.fontScale * 100}%`;
+
+  document.documentElement.classList.toggle(
+    "accessibility-high-contrast",
+    settings.highContrast
+  );
+
+  document.documentElement.classList.toggle(
+    "accessibility-underline-links",
+    settings.underlineLinks
+  );
+
+  document.documentElement.classList.toggle(
+    "accessibility-disable-animations",
+    settings.disableAnimations
+  );
+
+  document.documentElement.classList.toggle(
+    "accessibility-readable-font",
+    settings.readableFont
+  );
+}
+
+let accessibilitySettings = getAccessibilitySettings();
+applyAccessibilitySettings(accessibilitySettings);
+
+function openAccessibilityPanel() {
+  accessibilityPanel.classList.add("is-open");
+  accessibilityPanel.setAttribute("aria-hidden", "false");
+  accessibilityToggle.setAttribute("aria-expanded", "true");
+}
+
+function closeAccessibility() {
+  accessibilityPanel.classList.remove("is-open");
+  accessibilityPanel.setAttribute("aria-hidden", "true");
+  accessibilityToggle.setAttribute("aria-expanded", "false");
+}
+
+if (accessibilityToggle && accessibilityPanel && closeAccessibilityPanel) {
+  accessibilityToggle.addEventListener("click", () => {
+    const isOpen = accessibilityPanel.classList.contains("is-open");
+    if (isOpen) {
+      closeAccessibility();
+    } else {
+      openAccessibilityPanel();
+    }
+  });
+
+  closeAccessibilityPanel.addEventListener("click", closeAccessibility);
+
+  document.addEventListener("click", (event) => {
+    if (
+      accessibilityPanel.classList.contains("is-open") &&
+      !accessibilityPanel.contains(event.target) &&
+      !accessibilityToggle.contains(event.target)
+    ) {
+      closeAccessibility();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAccessibility();
+    }
+  });
+
+  accessibilityPanel.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-action]");
+    if (!button) return;
+
+    const action = button.dataset.action;
+
+    switch (action) {
+      case "increase-text":
+        accessibilitySettings.fontScale = Math.min(
+          accessibilitySettings.fontScale + 0.1,
+          1.4
+        );
+        break;
+
+      case "decrease-text":
+        accessibilitySettings.fontScale = Math.max(
+          accessibilitySettings.fontScale - 0.1,
+          0.9
+        );
+        break;
+
+      case "toggle-contrast":
+        accessibilitySettings.highContrast = !accessibilitySettings.highContrast;
+        break;
+
+      case "toggle-links":
+        accessibilitySettings.underlineLinks = !accessibilitySettings.underlineLinks;
+        break;
+
+      case "toggle-animations":
+        accessibilitySettings.disableAnimations =
+          !accessibilitySettings.disableAnimations;
+        break;
+
+      case "toggle-readable-font":
+        accessibilitySettings.readableFont = !accessibilitySettings.readableFont;
+        break;
+
+      case "reset":
+        accessibilitySettings = { ...defaultAccessibilitySettings };
+        break;
+
+      default:
+        return;
+    }
+
+    applyAccessibilitySettings(accessibilitySettings);
+    saveAccessibilitySettings(accessibilitySettings);
+  });
+}
