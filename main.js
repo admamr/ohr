@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initEventModal();
   initLanguageSwitcher();
   initCookieConsent();
+  initPopup();
+  initAccessibility();
 
   function initMobileMenu() {
     const mobileToggle = document.querySelector(".mobile-menu-toggle");
@@ -30,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isOpen) return;
       const clickedInsideNav = mainNav.contains(e.target);
       const clickedToggle = mobileToggle.contains(e.target);
+
       if (!clickedInsideNav && !clickedToggle) {
         mainNav.classList.remove("active");
         mobileToggle.setAttribute("aria-expanded", "false");
@@ -65,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const cardType = el.classList.contains("vision-card")
           ? ".vision-card"
           : ".event-card";
-        const cardIndex = Array.from(
-          document.querySelectorAll(cardType)
-        ).indexOf(el);
+
+        const cardIndex = Array.from(document.querySelectorAll(cardType)).indexOf(el);
+
         if (cardIndex === 1) el.classList.add("delay-100");
         if (cardIndex === 2) el.classList.add("delay-200");
       }
@@ -133,8 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
               const fx = dx / distance;
               const fy = dy / distance;
               const force = (mouseDistance - distance) / mouseDistance;
-              this.vx -= fx * force * 1;
-              this.vy -= fy * force * 1;
+              this.vx -= fx * force;
+              this.vy -= fy * force;
             }
           }
         }
@@ -149,7 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       function initParticles() {
         particles = [];
-        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
       }
 
       function animate() {
@@ -168,9 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (distance < connectionDistance) {
               ctx.beginPath();
-              ctx.strokeStyle = `rgba(199, 168, 109, ${
-                1 - distance / connectionDistance
-              })`;
+              ctx.strokeStyle = `rgba(199, 168, 109, ${1 - distance / connectionDistance})`;
               ctx.lineWidth = 1;
               ctx.moveTo(p1.x, p1.y);
               ctx.lineTo(p2.x, p2.y);
@@ -220,12 +223,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateCarousel() {
       const dirMultiplier = isRTL() ? 1 : -1;
-      track.style.transform = `translateX(${
-        currentIndex * 100 * dirMultiplier
-      }%)`;
+      track.style.transform = `translateX(${currentIndex * 100 * dirMultiplier}%)`;
 
       const activeSlide = slides[currentIndex];
-      if (activeSlide) viewport.style.height = activeSlide.offsetHeight + "px";
+      if (activeSlide) {
+        viewport.style.height = activeSlide.offsetHeight + "px";
+      }
 
       slides.forEach((slide, idx) => {
         if (idx === currentIndex) {
@@ -293,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     window.addEventListener("resize", updateCarousel);
+
     const images = track.querySelectorAll("img");
     images.forEach((img) => {
       if (img.complete) return;
@@ -324,9 +328,8 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.setAttribute("aria-selected", "true");
 
         const targetId = btn.getAttribute("aria-controls");
-        const targetSection = targetId
-          ? document.getElementById(targetId)
-          : null;
+        const targetSection = targetId ? document.getElementById(targetId) : null;
+
         if (targetSection) {
           targetSection.classList.add("is-active");
           targetSection.hidden = false;
@@ -344,15 +347,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const track = modal.querySelector(".modal-gallery-track");
     const prevBtn = modal.querySelector(".modal-nav.prev");
     const nextBtn = modal.querySelector(".modal-nav.next");
-
     const dateTag = modal.querySelector(".modal-date-tag");
     const titleEl = modal.querySelector(".modal-title");
     const descEl = modal.querySelector(".modal-desc");
-
     const triggers = document.querySelectorAll(".event-trigger");
 
-    if (!track || !prevBtn || !nextBtn || !titleEl || !descEl || !dateTag)
-      return;
+    if (!track || !prevBtn || !nextBtn || !titleEl || !descEl || !dateTag) return;
     if (!triggers.length) return;
 
     let images = [];
@@ -416,13 +416,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       render();
 
-      modal.classList.add("is-open"); // was "active"
+      modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
 
     function closeModal() {
-      modal.classList.remove("is-open"); // was "active"
+      modal.classList.remove("is-open");
       modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.addEventListener("keydown", (e) => {
-      if (!modal.classList.contains("active")) return;
+      if (!modal.classList.contains("is-open")) return;
       if (e.key === "Escape") closeModal();
       if (e.key === "ArrowLeft") prevBtn.click();
       if (e.key === "ArrowRight") nextBtn.click();
@@ -493,8 +493,10 @@ document.addEventListener("DOMContentLoaded", () => {
         option.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
+
           const lang = option.getAttribute("data-lang");
           if (lang) switchLanguage(lang);
+
           dropdown.classList.remove("show");
         });
       });
@@ -625,6 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           this.applyConsent();
         }
+
         this.renderModal();
         this.attachGlobalListeners();
       }
@@ -644,6 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ...c,
           timestamp: new Date().toISOString(),
         };
+
         localStorage.setItem(this.consentKey, JSON.stringify(this.consent));
         this.applyConsent();
       }
@@ -674,6 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         `;
+
         document.body.insertAdjacentHTML("beforeend", html);
         document.body.classList.add("has-cookie-banner");
 
@@ -687,9 +692,9 @@ document.addEventListener("DOMContentLoaded", () => {
           this.closeBanner();
         });
 
-        document
-          .getElementById("cb-manage")
-          .addEventListener("click", () => this.openModal());
+        document.getElementById("cb-manage").addEventListener("click", () => {
+          this.openModal();
+        });
       }
 
       closeBanner() {
@@ -760,6 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         `;
+
         document.body.insertAdjacentHTML("beforeend", html);
 
         const modal = document.getElementById("cookie-modal");
@@ -790,6 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const analyticsToggle = document.getElementById("toggle-analytics");
         const marketingToggle = document.getElementById("toggle-marketing");
+
         if (analyticsToggle) analyticsToggle.checked = !!this.consent.analytics;
         if (marketingToggle) marketingToggle.checked = !!this.consent.marketing;
 
@@ -801,6 +808,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener("click", (e) => {
           const target = e.target;
           if (!(target instanceof Element)) return;
+
           if (target.matches("[data-cookie-open]")) {
             e.preventDefault();
             this.openModal();
@@ -811,171 +819,179 @@ document.addEventListener("DOMContentLoaded", () => {
 
     new CookieConsent();
   }
-});
 
-const popup = document.getElementById("popupOverlay");
-  const closeBtn = document.getElementById("closePopup");
+  function initPopup() {
+    const popup = document.getElementById("popupOverlay");
+    const closeBtn = document.getElementById("closePopup");
 
-  if (!sessionStorage.getItem("ohrPopupShown")) {
-    popup.style.display = "flex";
-    sessionStorage.setItem("ohrPopupShown", "true");
-  } else {
-    popup.style.display = "none";
-  }
+    if (!popup || !closeBtn) return;
 
-  closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-  });
-
-  popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
+    if (!sessionStorage.getItem("ohrPopupShown")) {
+      popup.style.display = "flex";
+      sessionStorage.setItem("ohrPopupShown", "true");
+    } else {
       popup.style.display = "none";
     }
-  });
 
-// Accessibility-toggle
+    closeBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
 
-const accessibilityToggle = document.getElementById("accessibilityToggle");
-const accessibilityPanel = document.getElementById("accessibilityPanel");
-const closeAccessibilityPanel = document.getElementById("closeAccessibilityPanel");
-
-const STORAGE_KEY = "ohrAccessibilitySettings";
-
-const defaultAccessibilitySettings = {
-  fontScale: 1,
-  highContrast: false,
-  underlineLinks: false,
-  disableAnimations: false,
-  readableFont: false,
-};
-
-function getAccessibilitySettings() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return { ...defaultAccessibilitySettings, ...saved };
-  } catch {
-    return { ...defaultAccessibilitySettings };
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        popup.style.display = "none";
+      }
+    });
   }
-}
 
-function saveAccessibilitySettings(settings) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-}
+  function initAccessibility() {
+    const accessibilityToggle = document.getElementById("accessibilityToggle");
+    const accessibilityPanel = document.getElementById("accessibilityPanel");
+    const closeAccessibilityPanel = document.getElementById("closeAccessibilityPanel");
 
-function applyAccessibilitySettings(settings) {
-  document.documentElement.style.fontSize = `${settings.fontScale * 100}%`;
-
-  document.documentElement.classList.toggle(
-    "accessibility-high-contrast",
-    settings.highContrast
-  );
-
-  document.documentElement.classList.toggle(
-    "accessibility-underline-links",
-    settings.underlineLinks
-  );
-
-  document.documentElement.classList.toggle(
-    "accessibility-disable-animations",
-    settings.disableAnimations
-  );
-
-  document.documentElement.classList.toggle(
-    "accessibility-readable-font",
-    settings.readableFont
-  );
-}
-
-let accessibilitySettings = getAccessibilitySettings();
-applyAccessibilitySettings(accessibilitySettings);
-
-function openAccessibilityPanel() {
-  accessibilityPanel.classList.add("is-open");
-  accessibilityPanel.setAttribute("aria-hidden", "false");
-  accessibilityToggle.setAttribute("aria-expanded", "true");
-}
-
-function closeAccessibility() {
-  accessibilityPanel.classList.remove("is-open");
-  accessibilityPanel.setAttribute("aria-hidden", "true");
-  accessibilityToggle.setAttribute("aria-expanded", "false");
-}
-
-if (accessibilityToggle && accessibilityPanel && closeAccessibilityPanel) {
-  accessibilityToggle.addEventListener("click", () => {
-    const isOpen = accessibilityPanel.classList.contains("is-open");
-    if (isOpen) {
-      closeAccessibility();
-    } else {
-      openAccessibilityPanel();
-    }
-  });
-
-  closeAccessibilityPanel.addEventListener("click", closeAccessibility);
-
-  document.addEventListener("click", (event) => {
-    if (
-      accessibilityPanel.classList.contains("is-open") &&
-      !accessibilityPanel.contains(event.target) &&
-      !accessibilityToggle.contains(event.target)
-    ) {
-      closeAccessibility();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAccessibility();
-    }
-  });
-
-  accessibilityPanel.addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-action]");
-    if (!button) return;
-
-    const action = button.dataset.action;
-
-    switch (action) {
-      case "increase-text":
-        accessibilitySettings.fontScale = Math.min(
-          accessibilitySettings.fontScale + 0.1,
-          1.4
-        );
-        break;
-
-      case "decrease-text":
-        accessibilitySettings.fontScale = Math.max(
-          accessibilitySettings.fontScale - 0.1,
-          0.9
-        );
-        break;
-
-      case "toggle-contrast":
-        accessibilitySettings.highContrast = !accessibilitySettings.highContrast;
-        break;
-
-      case "toggle-links":
-        accessibilitySettings.underlineLinks = !accessibilitySettings.underlineLinks;
-        break;
-
-      case "toggle-animations":
-        accessibilitySettings.disableAnimations =
-          !accessibilitySettings.disableAnimations;
-        break;
-
-      case "toggle-readable-font":
-        accessibilitySettings.readableFont = !accessibilitySettings.readableFont;
-        break;
-
-      case "reset":
-        accessibilitySettings = { ...defaultAccessibilitySettings };
-        break;
-
-      default:
-        return;
+    if (!accessibilityToggle || !accessibilityPanel || !closeAccessibilityPanel) {
+      return;
     }
 
+    const STORAGE_KEY = "ohrAccessibilitySettings";
+
+    const defaultAccessibilitySettings = {
+      fontScale: 1,
+      highContrast: false,
+      underlineLinks: false,
+      disableAnimations: false,
+      readableFont: false,
+    };
+
+    function getAccessibilitySettings() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        return { ...defaultAccessibilitySettings, ...saved };
+      } catch {
+        return { ...defaultAccessibilitySettings };
+      }
+    }
+
+    function saveAccessibilitySettings(settings) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    }
+
+    function applyAccessibilitySettings(settings) {
+      document.documentElement.style.fontSize = `${settings.fontScale * 100}%`;
+
+      document.documentElement.classList.toggle(
+        "accessibility-high-contrast",
+        settings.highContrast
+      );
+
+      document.documentElement.classList.toggle(
+        "accessibility-underline-links",
+        settings.underlineLinks
+      );
+
+      document.documentElement.classList.toggle(
+        "accessibility-disable-animations",
+        settings.disableAnimations
+      );
+
+      document.documentElement.classList.toggle(
+        "accessibility-readable-font",
+        settings.readableFont
+      );
+    }
+
+    let accessibilitySettings = getAccessibilitySettings();
     applyAccessibilitySettings(accessibilitySettings);
-    saveAccessibilitySettings(accessibilitySettings);
-  });
-}
+
+    function openAccessibilityPanel() {
+      accessibilityPanel.classList.add("is-open");
+      accessibilityPanel.setAttribute("aria-hidden", "false");
+      accessibilityToggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeAccessibility() {
+      accessibilityPanel.classList.remove("is-open");
+      accessibilityPanel.setAttribute("aria-hidden", "true");
+      accessibilityToggle.setAttribute("aria-expanded", "false");
+    }
+
+    accessibilityToggle.addEventListener("click", () => {
+      const isOpen = accessibilityPanel.classList.contains("is-open");
+
+      if (isOpen) {
+        closeAccessibility();
+      } else {
+        openAccessibilityPanel();
+      }
+    });
+
+    closeAccessibilityPanel.addEventListener("click", closeAccessibility);
+
+    document.addEventListener("click", (event) => {
+      if (
+        accessibilityPanel.classList.contains("is-open") &&
+        !accessibilityPanel.contains(event.target) &&
+        !accessibilityToggle.contains(event.target)
+      ) {
+        closeAccessibility();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeAccessibility();
+      }
+    });
+
+    accessibilityPanel.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+
+      const action = button.dataset.action;
+
+      switch (action) {
+        case "increase-text":
+          accessibilitySettings.fontScale = Math.min(
+            accessibilitySettings.fontScale + 0.1,
+            1.4
+          );
+          break;
+
+        case "decrease-text":
+          accessibilitySettings.fontScale = Math.max(
+            accessibilitySettings.fontScale - 0.1,
+            0.9
+          );
+          break;
+
+        case "toggle-contrast":
+          accessibilitySettings.highContrast = !accessibilitySettings.highContrast;
+          break;
+
+        case "toggle-links":
+          accessibilitySettings.underlineLinks = !accessibilitySettings.underlineLinks;
+          break;
+
+        case "toggle-animations":
+          accessibilitySettings.disableAnimations =
+            !accessibilitySettings.disableAnimations;
+          break;
+
+        case "toggle-readable-font":
+          accessibilitySettings.readableFont =
+            !accessibilitySettings.readableFont;
+          break;
+
+        case "reset":
+          accessibilitySettings = { ...defaultAccessibilitySettings };
+          break;
+
+        default:
+          return;
+      }
+
+      applyAccessibilitySettings(accessibilitySettings);
+      saveAccessibilitySettings(accessibilitySettings);
+    });
+  }
+});
