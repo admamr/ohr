@@ -703,5 +703,43 @@
       </div>
     </footer>
     <script src="../main.js" defer></script>
+    <button
+  id="accessibilityToggle"
+  class="accessibility-toggle"
+  aria-label="Open accessibility menu"
+  aria-expanded="false"
+  aria-controls="accessibilityPanel"
+  type="button"
+>
+  ♿
+</button>
+
+<aside
+  id="accessibilityPanel"
+  class="accessibility-panel"
+  aria-hidden="true"
+>
+  <div class="accessibility-panel__header">
+    <h2>Accessibility</h2>
+    <button
+      id="closeAccessibilityPanel"
+      class="accessibility-close"
+      aria-label="Close accessibility menu"
+      type="button"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="accessibility-panel__buttons">
+    <button type="button" data-action="increase-text">Increase Text</button>
+    <button type="button" data-action="decrease-text">Decrease Text</button>
+    <button type="button" data-action="toggle-contrast">High Contrast</button>
+    <button type="button" data-action="toggle-links">Underline Links</button>
+    <button type="button" data-action="toggle-animations">Stop Animations</button>
+    <button type="button" data-action="toggle-readable-font">Readable Font</button>
+    <button type="button" data-action="reset">Reset</button>
+  </div>
+</aside>
   </body>
 </html>
