@@ -24,7 +24,93 @@
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet" />
 </head>
   <body>
+    <header class="site-header">
+      <div class="container header-container">
+        <a href="/index.html" class="logo">
+          <img src="assets/Logo-1.png" alt="לוגו עמותת אור" />
+        </a>
 
+        <button
+          class="mobile-menu-toggle"
+          aria-label="פתח תפריט"
+          aria-expanded="false"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">בית</a></li>
+          <li><a href="about-he.html" class="nav-link">על העמותה</a></li>
+           <li><a href="monir-he.html" class="nav-link">סיפור חייו של מוניר </a></li>
+            <li><a href="events-he.html" class="nav-link">אירועים</a></li>
+          </ul>
+
+          <div class="mobile-nav-actions">
+            <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a href="contact-he.html" class="btn btn-pill btn-contact">צור קשר</a>
+            <div class="lang-wrapper">
+              <button class="lang-switch" aria-label="Switch Language">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-globe"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path
+                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                  ></path>
+                </svg>
+              </button>
+              <div class="lang-dropdown">
+                <button class="lang-option" data-lang="he">עברית</button>
+                <button class="lang-option" data-lang="en">English</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </header>
+<main>
   <section class="legal-page">
   <div class="container">
 
@@ -89,6 +175,7 @@
 
   </div>
 </section>
+</main>
 
   <footer class="site-footer" dir="rtl">
       <div class="container">
@@ -217,6 +304,45 @@
 </div>
       </div>
     </footer>
+    <script src="main.js"></script>
+    <button
+  id="accessibilityToggle"
+  class="accessibility-toggle"
+  aria-label="פתח תפריט נגישות"
+  aria-expanded="false"
+  aria-controls="accessibilityPanel"
+  type="button"
+>
+  ♿
+</button>
+
+<aside
+  id="accessibilityPanel"
+  class="accessibility-panel"
+  aria-hidden="true"
+>
+  <div class="accessibility-panel__header">
+    <h2>נגישות</h2>
+    <button
+      id="closeAccessibilityPanel"
+      class="accessibility-close"
+      aria-label="סגור תפריט נגישות"
+      type="button"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="accessibility-panel__buttons">
+    <button type="button" data-action="increase-text">הגדל טקסט</button>
+    <button type="button" data-action="decrease-text">הקטן טקסט</button>
+    <button type="button" data-action="toggle-contrast">ניגודיות גבוהה</button>
+    <button type="button" data-action="toggle-links">קו תחתון לקישורים</button>
+    <button type="button" data-action="toggle-animations">עצירת אנימציות</button>
+    <button type="button" data-action="toggle-readable-font">פונט קריא</button>
+    <button type="button" data-action="reset">איפוס</button>
+  </div>
+</aside>
     
     </body>
 </html>
