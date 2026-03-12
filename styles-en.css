@@ -513,3 +513,128 @@ html.accessibility-disable-animations *::after {
     width: calc(100vw - 32px);
   }
 }
+
+/* Accessibility Statement Page */
+
+.accessibility-page {
+  background:
+    linear-gradient(180deg, rgba(8, 32, 24, 0.92), rgba(12, 46, 34, 0.96)),
+    radial-gradient(circle at top right, rgba(199, 168, 109, 0.14), transparent 30%);
+  min-height: 100vh;
+  padding: 140px 0 80px;
+  color: #f5f1e8;
+}
+
+.accessibility-page[dir="ltr"] .accessibility-card {
+  text-align: left;
+}
+
+.accessibility-page[dir="ltr"] ul {
+  padding-left: 22px;
+  padding-right: 0;
+}
+
+.accessibility-page .container {
+  max-width: 900px;
+}
+
+.accessibility-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(199, 168, 109, 0.18);
+  border-radius: 24px;
+  padding: 40px 32px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.accessibility-page h1 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  font-weight: 900;
+  color: #c7a86d;
+}
+
+.accessibility-page h2 {
+  margin: 32px 0 12px;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: #e6d3a1;
+}
+
+.accessibility-page p,
+.accessibility-page li {
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.accessibility-page p {
+  margin: 0 0 16px;
+}
+
+.accessibility-page ul {
+  margin: 0 0 10px;
+  padding-inline-start: 22px;
+}
+
+.accessibility-page li {
+  margin-bottom: 10px;
+}
+
+.accessibility-page a {
+  color: #e6d3a1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.accessibility-page a:hover {
+  color: #ffffff;
+}
+
+.accessibility-intro {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.accessibility-meta {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(199, 168, 109, 0.18);
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.accessibility-contact {
+  margin-top: 14px;
+}
+
+.accessibility-contact a {
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .accessibility-page {
+    padding: 120px 0 60px;
+  }
+
+  .accessibility-card {
+    padding: 28px 20px;
+    border-radius: 18px;
+  }
+
+  .accessibility-page h1 {
+    font-size: 2rem;
+  }
+
+  .accessibility-page h2 {
+    font-size: 1.2rem;
+  }
+
+  .accessibility-page p,
+  .accessibility-page li {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
